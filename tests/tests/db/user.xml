@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <test_user id="7" userid="dudette" name="The Dudess"
+               email="dudess@dude.com" password="87654321"
+               joined="2015-01-22 23:50:26" role="1" />
+    <test_user id="8" userid="cbowen" name="Charles Owen"
+               email="cbowen@cse.msu.edu" password="super477"
+               joined="2015-01-01 23:50:26" role="1" />
+</dataset>

@@ -1,0 +1,194 @@
+body, html {
+    margin:0;
+    padding:0;
+    border:0;
+    width:100%;
+    background:#fff;
+    min-width:48em;
+    font-size:90%;
+}
+
+/* Header styles */
+header {
+    clear: both;
+    float: left;
+    width: 100%;
+    background:#ded;
+    height: 45px;
+    margin: 0;
+}
+
+nav, footer {
+    clear: both;
+    background: #18453B;
+    color: white;
+    padding: 0.2em 0.3em 0.2em 0.3em;
+}
+
+nav {
+    height: 1.5em;
+}
+
+nav ul {
+    padding: 0 0 0 0.5em;
+    margin: 0;
+}
+
+nav li {
+    display: inline;
+    list-style-type: none;
+    padding-bottom: 0;
+}
+
+nav form {
+    display: inline;
+    padding-left: 2em;
+}
+
+nav form input {
+    font-size: 0.9em;
+}
+
+nav a {
+    padding: 0 0.5em 0 0.5em;
+}
+nav a:link, nav a:visited {
+    color: white;
+}
+
+nav a:hover {
+    color: #ddffdd;
+    background: #38864c;
+}
+
+a:link {
+    color: #004000;
+}
+
+a:visited {
+    color: #008000;
+}
+
+h1 {
+    font-family: "Arial", Arial, sans-serif;
+    font-size: 1.5em;
+    margin:0;
+    padding:0;
+}
+
+h1 img {
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+}
+
+/* The main body of the page */
+.main {
+    position:relative;	/* This fixes the IE7 overflow hidden bug */
+    clear:both;
+    float:left;
+    width:100%;			/* width of whole page */
+    overflow:hidden;		/* This chops off any overhanging divs */
+    background:#c8c8c8;
+}
+
+.left,
+.right {
+    float:left;
+    position:relative;
+    padding: 0 0 1em 0;
+    overflow:hidden;
+}
+
+.right {
+    width: 40em;			/* right column content width */
+}
+
+.left {
+    width: 12em;
+    padding: 0;
+}
+
+.left p {
+    margin: 0.5em;
+}
+
+.options {
+    background: white;
+    margin: 0.5em;
+    border: thin solid black;
+    font-family: "Arial", Arial, sans-serif;
+}
+
+.options p {
+    padding: 0;
+    margin: 0;
+    border-top: thin solid black;
+    background: white;
+    padding: 0.1em 0.25em;
+}
+
+.options h2 {
+    margin: 0;
+    padding: 0;
+    background: #ded;
+    font-size: 1em;
+    padding: 0.2em 0.25em 0.1em 0.25em;
+    font-weight: normal;
+}
+
+.sighting, .description, .form {
+    font-family: "Arial", Arial, sans-serif;
+    width:96%;
+    padding:0.5em;
+    background: white;
+    margin: 0.5em auto 0.5em auto;
+    border-radius: 0.3em;
+    border: 1pt solid black;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+}
+
+.sighting p.time {
+    padding: 0;
+    margin: 0;
+    font-size: 0.8em;
+}
+
+.sighting img {
+    vertical-align: middle;
+}
+
+.comments {
+    font-size: 0.9em;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 0.4em 0.5em 0.4em 0.5em;
+    border: 1pt solid #bbb;
+    border-radius: 0.3em;
+    background: #efe;
+}
+
+.comments p {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Footer styles */
+footer {
+    clear:both;
+}
+
+footer p {
+    margin:0;
+}
+
+#login {
+    width: 15em;
+    margin: 0em auto 0 auto;
+    padding-top: 10em;
+}

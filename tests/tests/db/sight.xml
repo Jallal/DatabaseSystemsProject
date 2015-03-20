@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <test_sight id="44" userid="8" name="Tom Izzo"
+                description="What a coach!" created="1995-06-15 11:50:26" />
+    <test_sight id="46" userid="7" name="Belmont Tower"
+                description="You know it doesn't move, right?" created="2014-06-25 11:50:26" />
+    <test_sight id="47" userid="7" name="MSU Union"
+                description="Cool place to chill out." created="2014-01-22 11:44:26" />
+</dataset>
