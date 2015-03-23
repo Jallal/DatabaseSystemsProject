@@ -10,7 +10,7 @@ class Users extends Table {
      * @param $site Site object
      */
     public function __construct(Site $site) {
-        parent::__construct($site, "user");
+        parent::__construct($site, "User");
     }
 
     /**
