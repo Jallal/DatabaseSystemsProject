@@ -13,13 +13,14 @@
 <h2>Login</h2>
 <form method="post" action="post/login-post.php">
     <p>
-        <label for="user">User name or Email:</label><br>
+        <label for="user">User name:</label><br>
         <input type="text" id="user" name="user"></p>
     <p><label for="password">Password:</label><br>
         <input type="password" id="password" name="password">
     </p>
     <p><input type="submit"></p>
 </form>
+<p><a href="newuser.php">New User</a></p>
 </div>
 </body>
 </html>

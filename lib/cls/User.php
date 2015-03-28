@@ -11,8 +11,10 @@ class User {
     private $userid;    ///< User-supplied ID
     private $name;      ///< What we call you by
     private $email;     ///< Email address
-    private $joined;    ///< When we joined the site
-    private $role;      ///< The user role
+    private $city;      ///< City the user is from
+    private $state;     ///< State the user is from
+    private $privacy;   ///< Privacy setting for the user
+    Private $birthyear; ///< Year the person was born
 
     /**
      * Constructor
@@ -23,8 +25,10 @@ class User {
         $this->userid = $row['userid'];
         $this->name = $row['name'];
         $this->email = $row['email'];
-        $this->joined = strtotime($row['joined']);
-        $this->role = $row['role'];
+        $this->city = $row['city'];
+        $this->state = $row['state'];
+        $this->privacy = $row['privacy'];
+        $this->birthyear = $row['birthyear'];
     }
 
     /**
@@ -62,18 +66,32 @@ class User {
     /**
      * @return mixed
      */
-    public function getJoined()
+    public function getCity()
     {
-        return $this->joined;
+        return $this->city;
     }
 
     /**
      * @return mixed
      */
-    public function getRole()
+    public function getState()
     {
-        return $this->role;
+        return $this->state;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPrivacy()
+    {
+        return $this->privacy;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getBirthyear()
+    {
+        return $this->birthyear;
+    }
 }
