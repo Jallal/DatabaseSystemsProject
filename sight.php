@@ -24,16 +24,12 @@ $name = $view->getName();
 <div class="main">
     <!-- Left side items -->
     <div class="left">
-        <?php echo $view->presentSuper(); ?>
 
         <div class="options">
             <h2>STATS</h2>
             <p>23 Followers</p>
             <p>18 Sightings</p>
         </div>
-
-        <?php echo $view->deleteLink(); ?>
-
 
     </div>
 

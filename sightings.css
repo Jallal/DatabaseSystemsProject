@@ -192,3 +192,10 @@ footer p {
     margin: 0em auto 0 auto;
     padding-top: 10em;
 }
+.farright {
+    float: right;
+    font-family: "Arial", Arial, sans-serif;
+    margin: -1em 0em 1em 0em;
+
+
+}

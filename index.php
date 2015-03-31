@@ -22,12 +22,10 @@ if ($view->shouldRedirect()) {
 <div class="main">
 	<!-- Left side items -->
 	<div class="left">
-		<?php echo $view->presentSights(); ?>
+		<?php echo $view->presentCurrentFriends();?>
+		<br><br>
+		<?php echo $view->presentPendingRequests();?>
 
-		<div class="options">
-			<h2>USER SETTINGS</h2>
-			<a href="edituser.php">Edit User</a>
-		</div>
 
 	</div>
 

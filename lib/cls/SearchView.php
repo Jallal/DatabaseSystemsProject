@@ -21,11 +21,6 @@ class SearchView {
             $users = new Users($site);
             $this->user = $user;
             $this->results = $users->searchForAUser($result);
-
-
-
-
-
         }
 
 
@@ -45,22 +40,42 @@ class SearchView {
 
         if (sizeof($this->results) > 0 ) {
 
+
             $html = <<<HTML
 
 HTML;
             foreach ($this->results as $key => $value) {
 
+
                 $id = $value->getId();
                 $name = $value->getName();
-
+                $AddFriend = $this->AddAFreind($id,$value);
 
                 $html.=' <div class="sighting">';
+                $html.= '<div>'.$AddFriend.'</div>';
                 $html .= '<h2><a href="sight.php?i='.$id.'">'.$name .'</a></h2>';
                 $html .=  '</div>';
             }
 
             return $html;
         }
+    }
+
+    public function AddAFreind($id,$currentUser){
+
+        $userId = $currentUser->getId();
+
+        $html = <<<HTML
+HTML;
+
+            $html .= '<div class="farright">';
+            $html .= '<p><a href="post/sights-post.php?AddFriend='.$userId.'">Add Friend</a></p>';
+            $html .= '</div>';
+
+
+
+        return $html;
+
     }
 
 

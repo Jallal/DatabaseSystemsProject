@@ -24,7 +24,6 @@ class Format {
 <nav>
 	<ul>
 		<li><a href="index.php">Home</a></li>
-		<li><a href="form.php">New Sight</a></li>
 		<li><a href="post/logout-post.php">Log out</a></li>
 	<li><form name="search" action="post/search-post.php" method="post">
 		<input class = "search" type="text"  name="title"  value=" ">

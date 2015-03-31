@@ -6,15 +6,20 @@ class SightsController {
     private $user;
     private $page;
     private $lastInserted;
-    private $deleteWorked;
+    private $AddFriend;
+    private $friendship;
 
     public function __construct(Site $site, User $user, $request) {
+        $this->friendship = new  Friendship($site);
         $this->page = $site->getRoot();
         $this->site = $site;
         $this->user = $user;
+        if (isset($request['accept'])) {
+            $this->AcceptFriend($request['accept']);
+        }
 
-        if (isset($request['d'])) {
-            $this->deleteSight($request['d']);
+        if (isset($request['AddFriend'])) {
+            $this->AddFriend($request['AddFriend']);
         } elseif(isset($request['name'])) {
             $this->insert($request);
         }
@@ -30,9 +35,12 @@ class SightsController {
             $post['name'], $post['description']);
     }
 
-    public function deleteSight($id) {
-        $sights = new Sights($this->site);
-        $this->deleteWorked = $sights->deleteSight($id);
+    public function AddFriend($id) {
+        $this->friendship->AddRequest($this->user->getId(),$id);
+    }
+    public function AcceptFriend($id){
+        $this->friendship->acceptRequest($this->user->getId(),$id);
+
     }
 
     public function getLastInsertedId() {
@@ -40,6 +48,6 @@ class SightsController {
     }
 
     public function didDeleteWork() {
-        return $this->deleteWorked;
+        return $this->AddFriend;
     }
 }
