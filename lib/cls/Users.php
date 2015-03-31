@@ -147,6 +147,93 @@ SQL;
     }
 
     /**
+     * Create a new user.
+     * @param $user User
+     * @param $userid string user ID
+     * @param $name string user name
+     * @param $email string user email address
+     * @param $city string city where user is from
+     * @param $state string state initials where the user is from
+     * @param $privacy string privacy setting for the user
+     * @param $birthyear string year of birth for the user
+     * @returns string Error message or null if no error
+     */
+    public function editUser(User $user, $userid, $name, $email, $city, $state, $privacy, $birthyear)
+    {
+        $id = $user->getId();
+        /*// Ensure the passwords are valid and equal
+        if (strlen($password1) < 8 && $password1 != null) {
+            return "Passwords must be at least 8 characters long";
+        }
+
+        if ($password1 !== $password2) {
+            return "Passwords are not equal";
+        }*/
+
+        // Ensure we have no duplicate user ID or email address
+        $users = new Users($this->site);
+        if ($users->exists($userid)) {
+            return "User ID already exists. Please choose another one.";
+        }
+
+        if ($userid == null) {
+            $userid = $user->getUserid();
+        }
+
+        if ($users->exists($email)) {
+            return "Email address already exists.";
+        }
+
+        if ($email == null) {
+            $email = $user->getEmail();
+        }
+
+        // Check if user entered state initials
+        if ((strlen($state) > 2 && $state != null) || (strlen($state) < 2 && $state != null)) {
+            return "Enter the state initials.";
+        }
+
+        if ($state == null) {
+            $state = $user->getState();
+        }
+
+        if ($city == null) {
+            $city = $user->getCity();
+        }
+
+        if ($name == null) {
+            $name = $user->getName();
+        }
+
+        if ($privacy == null) {
+            $privacy = $user->getPrivacy();
+        }
+
+        // Check for valid Birth Year
+        if (((intval($birthyear) < 1900 && $birthyear != null) || (intval($birthyear) > 3000 && $birthyear != null))) {
+            return "Enter a valid birth year.";
+        }
+
+        if ($birthyear == null) {
+            $birthyear = $user->getBirthyear();
+        }
+
+        /*// Create salt and encrypted password
+        $salt = self::random_salt();
+        $hash = hash("sha256", $password1 . $salt);*/
+
+        // Add a record to the User table
+        $sql = <<<SQL
+UPDATE $this->tableName
+SET userid=?, name=?, email=?, city=?, state=?, privacy=?, birthyear=?
+WHERE id=?
+SQL;
+
+        $statement = $this->pdo()->prepare($sql);
+        $statement->execute(array($userid, $name, $email, $city, $state, $privacy, $birthyear, $id));
+    }
+
+    /**
      * @brief Generate a random salt string of characters for password salting
      * @param $len int Length to generate, default is 16
      * @returns string Salt string

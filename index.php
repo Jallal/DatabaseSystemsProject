@@ -25,15 +25,8 @@ if ($view->shouldRedirect()) {
 		<?php echo $view->presentSights(); ?>
 
 		<div class="options">
-		<h2>FOLLOWING</h2>
-		<p><a href="#">Vincent Price</a></p>
-		<p><a href="#">The Team Bus</a></p>
-		</div>
-
-		<div class="options">
-		<h2>FRIENDS</h2>
-		<p><a href="#">Anton Phibes</a></p>
-		<p><a href="#">Jennifer</a></p>
+			<h2>USER SETTINGS</h2>
+			<a href="edituser.php">Edit User</a>
 		</div>
 
 	</div>
