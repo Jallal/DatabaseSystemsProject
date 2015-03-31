@@ -8,7 +8,7 @@ return function(Site $site) {
     date_default_timezone_set('America/Detroit');
 
     $site->setEmail('elhazzat@cse.msu.edu');
-    $site->setRoot('/~madejekz/web/CSE480');
+    $site->setRoot('/~elhazzat/cse480');
     $site->dbConfigure('mysql:host=mysql-user.cse.msu.edu;dbname=elhazzat',
         'elhazzat',       // Database user
         'superstudent',     // Database password

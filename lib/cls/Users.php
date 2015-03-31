@@ -160,4 +160,29 @@ SQL;
         }
         return $str;
     }
+
+
+    public function searchForAUser($like){
+        $like =  !is_array($like) ? trim(addslashes($like)) : '';
+        $like2 = '%'.$like.'%';
+
+        $sql =<<<SQL
+
+SELECT * FROM $this->tableName WHERE name LIKE  ? or userid Like ?
+ group by name;
+SQL;
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($like2,$like2));
+        $countries = $statement->fetchAll();
+        $result = array();  // Empty initial array
+        foreach($countries as $row) {
+            $result[] = new Search($row);
+        }
+
+
+        return $result;
+    }
+
+
 }

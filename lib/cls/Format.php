@@ -23,11 +23,12 @@ class Format {
 </header>
 <nav>
 	<ul>
-		<li><a href="./">Home</a></li>
+		<li><a href="index.php">Home</a></li>
 		<li><a href="form.php">New Sight</a></li>
 		<li><a href="post/logout-post.php">Log out</a></li>
-	<li><form>
-		<input type="search"> <input type="submit" value="Search">
+	<li><form name="search" action="post/search-post.php" method="post">
+		<input class = "search" type="text"  name="title"  value=" ">
+		<input class = "search" type="submit"  name ="search"   value="Search">
 	</form></li>
 	</ul>
 </nav>
