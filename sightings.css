@@ -199,3 +199,16 @@ footer p {
 
 
 }
+
+.farright2 {
+    float: right;
+    font-family: "Arial", Arial, sans-serif;
+    margin: -1.2em 0.5em 1em 0em;
+
+}
+
+.center {
+    text-align: center;
+    font-family: "Arial", Arial, sans-serif;
+    margin: -1.2em 0.5em 1em 0em;
+}

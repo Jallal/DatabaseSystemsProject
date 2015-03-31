@@ -63,6 +63,7 @@ HTML;
             $name = $friend->getName();
             $html .=  <<<HTML
 <p><a href="post/sights-post.php?i=$friendId ">$name</a></p>
+<div class="farright2"><a href="post/sights-post.php?delete=$friendId">Remove</a></div>
 HTML;
         }
         $html .= '</div>';
@@ -86,13 +87,53 @@ HTML;
             $friendId = $friend->getId();
             $name = $friend->getName();
             $html .=  <<<HTML
-             <p>$name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="post/sights-post.php?accept=$friendId">Accept</a></p>
+             <p>$name</p>
+             <div class="farright2"><a href="post/sights-post.php?accept=$friendId">Accept</a></div>
+             <div class="center"><a href="post/sights-post.php?delete=$friendId">Decline</a></div>
 HTML;
         }
         $html .= '</div>';
         return $html;
 
 
+    }
+
+
+    public function presentSuper() {
+        $name=$this->user->getName();
+        $id = $this->user->getId();
+        $email = $this->user->getEmail();
+        $city  = $this->user->getCity();
+        $state = $this->user->getState();
+        $right = <<<HTML
+           <div class="options">
+           <h2>Welcome</h2>
+           <p><a href="index.php?i=$id">$name</a></p>
+           <p><a href="edituser.php?i=$id">Edit Profile</a></p>
+
+           </div>
+HTML;
+        return $right;
+    }
+
+
+    public function presentProfile() {
+        $name=$this->user->getName();
+        $id = $this->user->getId();
+        $email = $this->user->getEmail();
+        $city  = $this->user->getCity();
+        $state = $this->user->getState();
+        $YOB = $this->user->getState();
+        $right = <<<HTML
+             <div class="options">
+            <h2>User Information</h2>
+            <p>Full Name:&nbsp&nbsp$name</p>
+            <p>Email Address:&nbsp&nbsp$email</p>
+            <p> From&nbsp&nbsp&nbsp$city&nbsp&nbsp$state </p>
+            <p>Year of birth  $YOB </p>
+           </div>
+HTML;
+        return $right;
     }
 
 

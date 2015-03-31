@@ -41,7 +41,7 @@ HTML;
     public static function footer() {
         return <<<HTML
 <footer>
-	<p>Copyright 2015, Super Sightings, Inc.</p>
+	<p>Copyright 2015, Sharing made Simple, Inc.</p>
 </footer>
 HTML;
 

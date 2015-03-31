@@ -22,8 +22,11 @@ if ($view->shouldRedirect()) {
 <div class="main">
 	<!-- Left side items -->
 	<div class="left">
+
+		<?php echo $view->presentSuper();?>
+		<br>
 		<?php echo $view->presentCurrentFriends();?>
-		<br><br>
+		<br>
 		<?php echo $view->presentPendingRequests();?>
 
 
@@ -31,25 +34,7 @@ if ($view->shouldRedirect()) {
 
 	<!-- Right side items -->
 	<div class="right">
-		<div class="sighting">
-			<h2><a href="#">Tom Izzo</a></h2>
-			<p class="time">1-15-2015 6:45pm</p>
-			<p>Tom was getting ready for his radio show and shooting the breeze with some other
-				patrons at the bar.</p>
-			<p class="awesome"><a href="#"><img src="images/awesome.jpg" width="" height="15" alt="Awesome"></a> 12</p>
-			<div class="comments">
-				<p><strong><a href="#">Anton Phibes</a></strong> I saw him, too!</p>
-				<p><strong><a href="#">Clive Butler</a></strong> Me, too!</p>
-			</div>
-		</div>
 
-		<div class="sighting">
-			<h2><a href="#">Sparty</a></h2>
-			<p class="time">1-16-2015 8:45pm</p>
-			<p>At the game, dude, at the game!</p>
-			<p class="awesome"><a href="#"><img src="images/awesome.jpg" width="" height="15" alt="Awesome"></a> 3</p>
-		</div>
-	</div>
 
 </div>
 

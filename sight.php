@@ -36,26 +36,14 @@ $name = $view->getName();
     <!-- Right side items -->
     <div class="right">
         <div class="description">
-            <p><?php echo $view->getDescription(); ?></p>
         </div>
 
         <div class="sighting">
-            <h2><a href="#">Tom Izzo</a></h2>
-            <p class="time">1-15-2015 6:45pm</p>
-            <p>Tom was getting ready for his radio show and shooting the breeze with some other
-                patrons at the bar.</p>
-            <p class="awesome"><a href="#"><img src="images/awesome.jpg" width="" height="15" alt="Awesome"></a> 12</p>
-            <div class="comments">
-                <p><strong><a href="#">Anton Phibes</a></strong> I saw him, too!</p>
-                <p><strong><a href="#">Clive Butler</a></strong> Me, too!</p>
-            </div>
+
         </div>
 
         <div class="sighting">
-            <h2><a href="#">Tom Izzo</a></h2>
-            <p class="time">1-12-2015 11:45pm</p>
-            <p>Leaving the Breslin center in his car.</p>
-            <p class="awesome"><a href="#"><img src="images/awesome.jpg" width="" height="15" alt="Awesome"></a> 6</p>
+
         </div>
 
     </div>

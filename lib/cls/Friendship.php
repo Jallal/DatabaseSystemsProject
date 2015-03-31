@@ -29,6 +29,29 @@ SQL;
         $statement->execute(array($sender, $receiver));
     }
 
+
+
+public function RemoveFriend($receiver, $sender){
+
+    $sql=<<<SQL
+DELETE FROM $this->tableName
+WHERE senderid=? AND  recipientid=?;
+SQL;
+
+    $statement = $this->pdo()->prepare($sql);
+    $statement->execute(array($receiver, $sender));
+
+
+    $sql=<<<SQL
+DELETE FROM $this->tableName
+WHERE senderid=? AND  recipientid=?;
+SQL;
+
+    $statement = $this->pdo()->prepare($sql);
+    $statement->execute(array($sender,$receiver));
+
+}
+
     public function acceptRequest($receiver, $sender) {
         $sql = <<<SQL
 UPDATE $this->tableName
@@ -47,6 +70,10 @@ SQL;
         $statement = $this->pdo()->prepare($sql);
         $statement->execute(array($receiver, $sender));
     }
+
+
+
+
 
     public function getPendingForUser($id) {
         $sql=<<<SQL

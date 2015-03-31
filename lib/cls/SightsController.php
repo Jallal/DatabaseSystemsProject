@@ -17,6 +17,12 @@ class SightsController {
         if (isset($request['accept'])) {
             $this->AcceptFriend($request['accept']);
         }
+        if (isset($request['delete'])) {
+            $this->DeleteFriend($request['delete']);
+        }
+
+
+
 
         if (isset($request['AddFriend'])) {
             $this->AddFriend($request['AddFriend']);
@@ -41,6 +47,10 @@ class SightsController {
     public function AcceptFriend($id){
         $this->friendship->acceptRequest($this->user->getId(),$id);
 
+    }
+    public function DeleteFriend($id){
+
+        $this->friendship->RemoveFriend($this->user->getId(),$id);
     }
 
     public function getLastInsertedId() {
