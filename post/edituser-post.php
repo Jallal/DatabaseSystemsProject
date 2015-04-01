@@ -9,9 +9,10 @@ $interest = new Interests($site);
 
 
 $msg = $users->editUser($user,
-    strip_tags($_POST['userid']),
     strip_tags($_POST['name']),
     strip_tags($_POST['email']),
+    strip_tags($_POST['password1']),
+    strip_tags($_POST['password2']),
     strip_tags($_POST['city']),
     strip_tags($_POST['state']),
     strip_tags($_POST['privacy']),

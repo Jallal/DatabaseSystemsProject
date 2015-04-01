@@ -22,11 +22,8 @@ require "lib/site.inc.php";
             unset($_SESSION['edituser-error']);
         }
         ?>
-        <p>
-            <label for="userid">User ID:</label><br>
-            <input type="text" id="userid" name="userid"></p>
-        <p>
-            <label for="name">Name:</label><br>
+
+            <label for="name">Full Name:</label><br>
             <input type="text" id="name" name="name"></p>
         <p>
             <label for="email">Email:</label><br>

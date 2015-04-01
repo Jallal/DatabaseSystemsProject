@@ -41,7 +41,7 @@ SQL;
         // Ensure it is correct
         if($hash !== hash("sha256", $password . $salt)) {
 
-                return null;
+                return "wrong email or address";
         }
 
         return new User($row);
@@ -123,6 +123,11 @@ SQL;
             return "Email address already exists.";
         }
 
+        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return "Unvalid Email address.";
+
+        }
+
         // Check if user entered state initials
         if (strlen($state) > 2 || strlen($state) < 2) {
             return "Enter the state initials.";
@@ -166,7 +171,7 @@ SQL;
      * @param $birthyear string year of birth for the user
      * @returns string Error message or null if no error
      */
-    public function editUser(User $user, $userid, $name, $email, $city, $state, $privacy, $birthyear)
+    public function editUser(User $user,$name, $email, $password1, $password2, $city, $state, $privacy, $birthyear)
     {
         $id = $user->getId();
         /*// Ensure the passwords are valid and equal
@@ -181,22 +186,34 @@ SQL;
         // Ensure we have no duplicate user ID or email address
         $users = new Users($this->site);
 
-        if ($userid == null) {
-            $userid = $user->getUserid();
-        }
-
 
         if ($email == null) {
             $email = $user->getEmail();
         }
+        else{
+            if (strlen($password1) < 8) {
+                return "Passwords must be at least 8 characters long";
+            }
 
-        // Check if user entered state initials
-        if ((strlen($state) > 2 && $state != null) || (strlen($state) < 2 && $state != null)) {
-            return "Enter the state initials.";
+            if ($password1 !== $password2) {
+                return "Passwords are not equal";
+            }
+            if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                return "Unvalid Email address.";
+
+            }
         }
+
 
         if ($state == null) {
             $state = $user->getState();
+        }
+        else{
+            // Check if user entered state initials
+            if ((strlen($state) > 2 && $state != null) || (strlen($state) < 2 && $state != null)) {
+                return "Enter the state initials.";
+            }
+
         }
 
         if ($city == null) {
@@ -211,13 +228,17 @@ SQL;
             $privacy = $user->getPrivacy();
         }
 
-        // Check for valid Birth Year
-        if (((intval($birthyear) < 1900 && $birthyear != null) || (intval($birthyear) > 3000 && $birthyear != null))) {
-            return "Enter a valid birth year.";
-        }
+
 
         if ($birthyear == null) {
             $birthyear = $user->getBirthyear();
+        }
+        else{
+            // Check for valid Birth Year
+            if (((intval($birthyear) < 1900 && $birthyear != null) || (intval($birthyear) > 3000 && $birthyear != null))) {
+                return "Enter a valid birth year.";
+            }
+
         }
 
         /*// Create salt and encrypted password
@@ -232,7 +253,7 @@ WHERE id=?
 SQL;
 
         $statement = $this->pdo()->prepare($sql);
-        $statement->execute(array($userid, $name, $email, $city, $state, $privacy, $birthyear, $id));
+        $statement->execute(array($id, $name, $email, $city, $state, $privacy, $birthyear, $id));
     }
 
     /**

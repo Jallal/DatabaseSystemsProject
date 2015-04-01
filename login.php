@@ -13,6 +13,11 @@
 <h2>Login</h2>
 <form method="post" action="post/login-post.php">
     <p>
+        <?php
+        if(isset($request['i'])) {
+            echo "<p>" . $_POST['i'] . "</p>";
+        }
+        ?>
         <label for="user">User name:</label><br>
         <input type="text" id="user" name="user"></p>
     <p><label for="password">Password:</label><br>
