@@ -49,6 +49,14 @@ require "lib/site.inc.php";
             <input type="radio" id="privacy" name="privacy" value="medium">Medium
             <input type="radio" id="privacy" name="privacy" value="high">High</p>
         <p>
+        <p>
+            <label for="Interest">Interest:</label><br>
+            <input type="radio" id="Interest" name="Interest" value="Sport">Sport
+            <input type="radio" id="Interest" name="Interest" value="Music">Music
+            <input type="radio" id="Interest" name="Interest" value="Tv">Tv</p>
+        Other:
+        <input type="text" id="Interest2" name="Interest2"></p>
+        <p>
             <label for="birthyear">Birth Year:</label><br>
             <input type="text" id="birthyear" name="birthyear"></p>
         <p><input type="submit"></p>

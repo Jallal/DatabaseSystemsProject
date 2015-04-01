@@ -86,13 +86,29 @@ HTML;
         foreach($this->userPendingFriends as $friend) {
             $friendId = $friend->getId();
             $name = $friend->getName();
-            $html .=  <<<HTML
-             <p>$name</p>
-             <div class="farright2"><a href="post/sights-post.php?accept=$friendId">Accept</a></div>
-             <div class="center"><a href="post/sights-post.php?delete=$friendId">Decline</a></div>
+
+             if(strlen($name)<8){
+                 $html .=  <<<HTML
+                  <p>$name</p>
+                 <div class="farright2"><a href="post/sights-post.php?accept=$friendId">Accept</a></div>
+                  <div class="center"><a href="post/sights-post.php?delete=$friendId">Decline</a></div>
 HTML;
-        }
+
+             }
+             else{
+                 $html .=  <<<HTML
+                 <p>$name</p>
+                 <div class="farright3"><a href="post/sights-post.php?accept=$friendId">Accept</a></div>
+                 <a href="post/sights-post.php?delete=$friendId">Decline</a>
+
+HTML;
+             }
+
+
+
+            }
         $html .= '</div>';
+
         return $html;
 
 

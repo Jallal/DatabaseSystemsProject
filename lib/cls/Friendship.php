@@ -116,4 +116,20 @@ SQL;
 
         return $result;
     }
+
+    public function doesfreindshipExist($id,$freindsId) {
+        $sql=<<<SQL
+SELECT * from $this->tableName
+WHERE senderid=? and recipientid=? and status='true'
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($id,$freindsId));
+        if($statement->rowCount() === 0) {
+            return false;
+        }
+
+        return true;
+    }
 }

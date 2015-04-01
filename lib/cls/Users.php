@@ -40,7 +40,8 @@ SQL;
 
         // Ensure it is correct
         if($hash !== hash("sha256", $password . $salt)) {
-            return null;
+
+                return null;
         }
 
         return new User($row);
@@ -146,6 +147,13 @@ SQL;
         $statement->execute(array($userid, $name, $email, $hash, $city, $state, $privacy, $birthyear, $salt));
     }
 
+
+
+
+
+
+
+
     /**
      * Create a new user.
      * @param $user User
@@ -172,17 +180,11 @@ SQL;
 
         // Ensure we have no duplicate user ID or email address
         $users = new Users($this->site);
-        if ($users->exists($userid)) {
-            return "User ID already exists. Please choose another one.";
-        }
 
         if ($userid == null) {
             $userid = $user->getUserid();
         }
 
-        if ($users->exists($email)) {
-            return "Email address already exists.";
-        }
 
         if ($email == null) {
             $email = $user->getEmail();

@@ -27,7 +27,7 @@ require_once "lib/site.inc.php";
             <label for="userid">User ID:</label><br>
             <input type="text" id="userid" name="userid"></p>
         <p>
-            <label for="name">Name:</label><br>
+            <label for="name">Full Name:</label><br>
             <input type="text" id="name" name="name"></p>
         <p>
             <label for="email">Email:</label><br>
@@ -50,6 +50,16 @@ require_once "lib/site.inc.php";
             <input type="radio" id="privacy" name="privacy" value="medium">Medium
             <input type="radio" id="privacy" name="privacy" value="high">High</p>
         <p>
+        <p>
+            <label for="Interest">Interest:</label><br>
+            <input type="radio" id="Interest" name="Interest" value="Sport">Sport
+            <input type="radio" id="Interest" name="Interest" value="Music">Music
+            <input type="radio" id="Interest" name="Interest" value="Tv">Tv</p>
+             Other:
+             <input type="text" id="Interest2" name="Interest2"></p>
+        <p>
+
+
             <label for="birthyear">Birth Year:</label><br>
             <input type="text" id="birthyear" name="birthyear"></p>
         <p><input type="submit"></p>

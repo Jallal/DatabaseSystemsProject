@@ -13,14 +13,14 @@ header {
     clear: both;
     float: left;
     width: 100%;
-    background:#ded;
+    background:#F5F5F5;
     height: 45px;
     margin: 0;
 }
 
 nav, footer {
     clear: both;
-    background: #18453B;
+    background: #4682B4;
     color: white;
     padding: 0.2em 0.3em 0.2em 0.3em;
 }
@@ -131,7 +131,7 @@ h1 img {
 .options h2 {
     margin: 0;
     padding: 0;
-    background: #ded;
+    background: #F5DEB3;
     font-size: 1em;
     padding: 0.2em 0.25em 0.1em 0.25em;
     font-weight: normal;
@@ -203,12 +203,18 @@ footer p {
 .farright2 {
     float: right;
     font-family: "Arial", Arial, sans-serif;
-    margin: -1.2em 0.5em 1em 0em;
+    margin: -1.2em 0.1em 1em 0em;
+
+}
+.farright3 {
+    float: right;
+    font-family: "Arial", Arial, sans-serif;
+    margin: 0.02em 0.5em 1em 0em;
 
 }
 
 .center {
     text-align: center;
     font-family: "Arial", Arial, sans-serif;
-    margin: -1.2em 0.5em 1em 0em;
+    margin: -1.2em 0em 1em 0.9em;
 }
