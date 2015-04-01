@@ -14,8 +14,6 @@ if(isset($_POST['user']) && isset($_POST['password'])) {
     else{
 
         $_POST['error'] = $user;
-        //var_dump($_POST['i']);
-        //$this->getName()->getID();
         header("location: ../login.php?error=".$_POST['error'].'');
             exit;
     }

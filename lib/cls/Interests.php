@@ -78,7 +78,30 @@ SQL;
 
 
 
+    public function UserInterests($userid)
+    {
 
+        $sql = <<<SQL
+SELECT * from $this->tableName
+where userid=?
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($userid));
+        if ($statement->rowCount() === 0) {
+            return false;
+        }
+        $countries = $statement->fetchAll();
+
+        $result = array();  // Empty initial array
+        foreach ($countries as $row) {
+            $result[] = new  Interest($row);
+        }
+
+
+        return $result;
+    }
 
 
 }

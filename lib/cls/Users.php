@@ -278,12 +278,12 @@ SQL;
 
         $sql =<<<SQL
 
-SELECT * FROM $this->tableName WHERE name LIKE  ? or userid Like ?
+SELECT * FROM $this->tableName WHERE name LIKE  ? or userid Like ? or email Like ?
  group by name;
 SQL;
         $pdo = $this->pdo();
         $statement = $pdo->prepare($sql);
-        $statement->execute(array($like2,$like2));
+        $statement->execute(array($like2,$like2,$like2));
         $countries = $statement->fetchAll();
         $result = array();  // Empty initial array
         foreach($countries as $row) {

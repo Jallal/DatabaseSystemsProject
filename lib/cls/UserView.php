@@ -8,15 +8,18 @@ class UserView {
     private $userSights;
     private $userPendingFriends;
     private $CurrentFriends;
+    private $UseInterests;
     private $redirect = false;
 
     public function __construct(Site $site, User $user=null, $request) {
         $friendship = new  Friendship($site);
+        $Interests = new  Interests($site);
         if (isset($request['i'])) {
             $users = new Users($site);
             $this->user = $users->get($request['i']);
             $this->userPendingFriends = $friendship->getPendingForUser($this->user->getId());
             $this->CurrentFriends  = $friendship->getCurrentFriends($this->user->getId());
+            $this->UseInterests  = $Interests->UserInterests($this->user->getUserid());
             if ($this->user === null) $this->redirect = true;
         } else {
             $this->user = $user;
@@ -26,6 +29,8 @@ class UserView {
             $this->userSights = $sights->getSightsForUser($this->user->getId());
             $this->userPendingFriends = $friendship->getPendingForUser($this->user->getId());
             $this->CurrentFriends  = $friendship->getCurrentFriends($this->user->getId());
+            $this->UseInterests  = $Interests->UserInterests($this->user->getUserid());
+
         }
     }
 
@@ -41,6 +46,46 @@ class UserView {
      */
     public function getName() {
         return $this->user->getName();
+    }
+    public function getEmail() {
+        return $this->user->getEmail();
+    }
+    public function getCity()
+    {
+        return $this->user->getCity();
+    }
+    public function getState()
+    {
+        return $this->user->getState();
+    }
+    public function getPrivacy()
+    {
+        return $this->user->getPrivacy();
+    }
+    public function getBirthyear()
+    {
+        return $this->user->getBirthyear();
+    }
+
+    public function presentInterests(){
+        if (empty($this->UseInterests)) {
+            return "&nbsp&nbspNONE";
+        }
+
+        $html = <<<HTML
+HTML;
+        foreach($this->UseInterests as $Interest) {
+            $interest = $Interest->getInterest();
+
+            $html .=  <<<HTML
+
+             $interest,&nbsp
+HTML;
+        }
+
+        return substr($html,0,strlen($html)-6);
+
+
     }
 
     /**
@@ -124,7 +169,7 @@ HTML;
         $right = <<<HTML
            <div class="options">
            <h2>Welcome</h2>
-           <p><a href="index.php?i=$id">$name</a></p>
+           <p><a href="profile.php?i=$id">View Profile</a></p>
            <p><a href="edituser.php?i=$id">Edit Profile</a></p>
 
            </div>
@@ -133,24 +178,7 @@ HTML;
     }
 
 
-    public function presentProfile() {
-        $name=$this->user->getName();
-        $id = $this->user->getId();
-        $email = $this->user->getEmail();
-        $city  = $this->user->getCity();
-        $state = $this->user->getState();
-        $YOB = $this->user->getState();
-        $right = <<<HTML
-             <div class="options">
-            <h2>User Information</h2>
-            <p>Full Name:&nbsp&nbsp$name</p>
-            <p>Email Address:&nbsp&nbsp$email</p>
-            <p> From&nbsp&nbsp&nbsp$city&nbsp&nbsp$state </p>
-            <p>Year of birth  $YOB </p>
-           </div>
-HTML;
-        return $right;
-    }
+
 
 
 
