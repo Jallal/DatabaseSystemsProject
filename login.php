@@ -14,8 +14,8 @@
 <form method="post" action="post/login-post.php">
     <p>
         <?php
-        if(isset($request['i'])) {
-            echo "<p>" . $_POST['i'] . "</p>";
+        if(isset($_REQUEST['error'])) {
+            echo "<p>" . $_GET['error'] . "</p>";
         }
         ?>
         <label for="user">User name:</label><br>

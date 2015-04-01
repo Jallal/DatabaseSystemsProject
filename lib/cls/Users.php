@@ -41,7 +41,7 @@ SQL;
         // Ensure it is correct
         if($hash !== hash("sha256", $password . $salt)) {
 
-                return "wrong email or address";
+                return "The email or password you entered is incorrect";
         }
 
         return new User($row);
@@ -123,7 +123,7 @@ SQL;
             return "Email address already exists.";
         }
 
-        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             return "Unvalid Email address.";
 
         }
@@ -198,7 +198,7 @@ SQL;
             if ($password1 !== $password2) {
                 return "Passwords are not equal";
             }
-            if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 return "Unvalid Email address.";
 
             }

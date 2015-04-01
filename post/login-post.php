@@ -13,12 +13,12 @@ if(isset($_POST['user']) && isset($_POST['password'])) {
     }
     else{
 
-        $_POST['i'] = $user;
+        $_POST['error'] = $user;
         //var_dump($_POST['i']);
         //$this->getName()->getID();
-        header("location: ../login.php?i=".$_POST['i'].'');
+        header("location: ../login.php?error=".$_POST['error'].'');
             exit;
     }
 }
 
-header("location: ../login.php?i=".$_POST['i'].'');
+header("location: ../login.php?error=".$_POST['error'].'');

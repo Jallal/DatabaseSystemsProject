@@ -28,12 +28,12 @@ require "lib/site.inc.php";
         <p>
             <label for="email">Email:</label><br>
             <input type="text" id="email" name="email"></p>
-        <!--<p>
+        <p>
             <label for="password1">Password:</label><br>
             <input type="password" id="password1" name="password1"></p>
         <p>
             <label for="password2">Password (again):</label><br>
-            <input type="password" id="password2" name="password2"></p>-->
+            <input type="password" id="password2" name="password2"></p>
         <p>
             <label for="city">City:</label><br>
             <input type="text" id="city" name="city"></p>
