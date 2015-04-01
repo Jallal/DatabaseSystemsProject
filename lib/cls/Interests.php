@@ -39,6 +39,7 @@ SQL;
 
     public function existUserInterest($userid,$interest){
 
+
         $sql =<<<SQL
 SELECT * from $this->tableName
 where userid=? AND interest=?
@@ -55,10 +56,9 @@ SQL;
 
     }
 
-    public function UpdateUserInterest($user,$userid,$interest){
-        if (strlen($userid)<1) {
-            $userid =$user->getUserid();
-        }
+    public function UpdateUserInterest($user,$interest){
+        $userid = $user->getUserid();
+
 
         if(!($this->existUserInterest($userid,$interest))){
 

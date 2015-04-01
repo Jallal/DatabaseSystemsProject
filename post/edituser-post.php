@@ -21,14 +21,14 @@ $msg = $users->editUser($user,
 
 
 if(isset($_POST['Interest'])&&isset($_POST['Interest2'])){
-   $interest->UpdateUserInterest($user,strip_tags($_POST['userid']), strip_tags($_POST['Interest2']));
-  $interest->UpdateUserInterest($user,strip_tags($_POST['userid']), strip_tags($_POST['Interest']));
+   $interest->UpdateUserInterest($user,strip_tags($_POST['Interest2']));
+  $interest->UpdateUserInterest($user, strip_tags($_POST['Interest']));
 }
 if(isset($_POST['Interest2'])){
-   $interest->UpdateUserInterest($user,strip_tags($_POST['userid']), strip_tags($_POST['Interest2']));
+   $interest->UpdateUserInterest($user,strip_tags($_POST['Interest2']));
 }
 if(isset($_POST['Interest'])){
-    $interest->UpdateUserInterest($user,strip_tags($_POST['userid']), strip_tags($_POST['Interest']));
+    $interest->UpdateUserInterest($user, strip_tags($_POST['Interest']));
 }
 
 
