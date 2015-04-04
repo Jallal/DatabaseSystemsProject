@@ -10,6 +10,9 @@ class UserView {
     private $CurrentFriends;
     private $UseInterests;
     private $redirect = false;
+    private $freindsCount;
+    private $CurrentDocuments;
+    private $CurrentProjects;
 
     public function __construct(Site $site, User $user=null, $request) {
         $friendship = new  Friendship($site);
@@ -19,6 +22,7 @@ class UserView {
             $this->user = $users->get($request['i']);
             $this->userPendingFriends = $friendship->getPendingForUser($this->user->getId());
             $this->CurrentFriends  = $friendship->getCurrentFriends($this->user->getId());
+            $this->freindsCount = $friendship->CountFriends($this->user->getId());
             $this->UseInterests  = $Interests->UserInterests($this->user->getUserid());
             if ($this->user === null) $this->redirect = true;
         } else {
@@ -30,6 +34,7 @@ class UserView {
             $this->userPendingFriends = $friendship->getPendingForUser($this->user->getId());
             $this->CurrentFriends  = $friendship->getCurrentFriends($this->user->getId());
             $this->UseInterests  = $Interests->UserInterests($this->user->getUserid());
+            $this->freindsCount = $friendship->CountFriends($this->user->getId());
 
         }
     }
@@ -39,6 +44,10 @@ class UserView {
      */
     public function shouldRedirect() {
         return $this->redirect;
+    }
+
+    public function FriendsCount() {
+        return $this->freindsCount;
     }
 
     /**
@@ -107,7 +116,7 @@ HTML;
             $friendId = $friend->getId();
             $name = $friend->getName();
             $html .=  <<<HTML
-<p><a href="post/sights-post.php?i=$friendId ">$name</a></p>
+<p><a href="profile.php?i=$friendId ">$name</a></p>
 <div class="farright2"><a href="post/sights-post.php?delete=$friendId">Remove</a></div>
 HTML;
         }
@@ -167,18 +176,65 @@ HTML;
         $city  = $this->user->getCity();
         $state = $this->user->getState();
         $right = <<<HTML
-           <div class="options">
-           <h2>Welcome</h2>
-           <p><a href="profile.php?i=$id">View Profile</a></p>
-           <p><a href="edituser.php?i=$id">Edit Profile</a></p>
-
-           </div>
+         <div class="options">
+          <h2>Welcome</h2>
+          <p><a href="profile.php?i=$id">View Profile</a></p>
+          <p><a href="edituser.php?i=$id">Edit Profile</a></p>
 HTML;
+        $right.='</div>';
         return $right;
     }
 
 
+    public function presentCurrentDocuments(){
 
+        if (empty($this->CurrentDocuments)) {
+            return "";
+        }
+        $html = <<<HTML
+
+ <div id="button">
+    <ul>
+		<h2>Documents</h2>
+HTML;
+
+        foreach($this->CurrentDocuments as $document) {
+            $documentId = $document->getId();
+            $name = $document->getName();
+            $html .= <<<HTML
+<p><a href="profile.php?i=$documentId">$name</a></p>
+<div class="farright2"><a href="post/sights-post.php?delete=$documentId">Remove</a></div>
+HTML;
+        }
+        $html .= '</div>';
+        return $html;
+
+
+    }
+
+    public function presentCurrentProjects(){
+
+        if (empty($this->CurrentProjects)) {
+            return "";
+        }
+        $html = <<<HTML
+<div class="options">
+		<h2>Projects</h2>
+HTML;
+
+        foreach($this->CurrentProjects as $project) {
+            $projectId = $project->getId();
+            $name = $project->getName();
+            $html .=  <<<HTML
+<p><a href="profile.php?i=$projectId ">$name</a></p>
+<div class="farright2"><a href="post/sights-post.php?delete=$projectId">Remove</a></div>
+HTML;
+        }
+        $html .= '</div>';
+        return $html;
+
+
+    }
 
 
 

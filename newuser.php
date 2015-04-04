@@ -12,7 +12,7 @@ require_once "lib/site.inc.php";
 </head>
 <body>
 <!-- Header and navigation -->
-<header><h1><img src="images/right-eye.jpg" width="102" height="45" alt="Eye"> Sightings</h1></header>
+<header><h1><img src="images/right-eye.jpg" width="140" height="70" alt="Eye">New Profile</h1></header>
 
 <div id="login">
     <h2>Login</h2>

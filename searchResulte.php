@@ -7,24 +7,21 @@ $name = $view->getName();
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title><?php echo $name; ?> Sightings Activity</title>
+    <title><?php echo $name; ?>Search Result</title>
     <link rel="stylesheet" type="text/css" href="sightings.css" media="screen" />
 </head>
+
+<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
 <body>
-<?php echo Format::header("$name Sightings"); ?>
 <!-- Main body of page -->
 <div class="main">
     <!-- Left side items -->
     <div class="left">
-
-
-
-        <div class="options">
-            <h2>FRIENDS</h2>
-            <p><a href="#">Anton Phibes</a></p>
-            <p><a href="#">Jennifer</a></p>
-        </div>
-
+        <?php echo $view->presentSuper();?>
+        <br>
+        <?php echo $view->presentCurrentFriends();?>
+        <br>
+        <?php echo $view->presentPendingRequests();?>
     </div>
 
     <!-- Right side items -->

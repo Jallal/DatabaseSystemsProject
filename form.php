@@ -9,10 +9,8 @@ $view = new UserView($site, $user, $_REQUEST);
 	<title>New Sight</title>
 	<link rel="stylesheet" type="text/css" href="sightings.css" media="screen" />
 </head>
+<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
 <body>
-
-<?php echo Format::header($view->getName()); ?>
-
 <!-- Main body of page -->
 <div class="main">
 	<!-- Left side items -->

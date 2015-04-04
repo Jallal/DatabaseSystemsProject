@@ -13,13 +13,13 @@ $name = $view->getName();
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title><?php echo $name; ?> Sightings</title>
+    <title><?php echo $name; ?> Home Page</title>
     <link href="sightings.css" type="text/css" rel="stylesheet" />
 </head>
+
+
+<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
 <body>
-
-<?php echo Format::header("$name Sightings"); ?>
-
 <!-- Main body of page -->
 <div class="main">
     <!-- Left side items -->

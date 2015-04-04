@@ -14,9 +14,16 @@ if ($view->shouldRedirect()) {
 	<title><?php echo $view->getName(); ?></title>
 	<link rel="stylesheet" type="text/css" href="sightings.css" media="screen" />
 </head>
+
+
+
+<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
+
 <body>
 
-<?php echo Format::header($view->getName()); ?>
+
+
+
 
 <!-- Main body of page -->
 <div class="main">
@@ -32,10 +39,9 @@ if ($view->shouldRedirect()) {
 
 	</div>
 
+
 	<!-- Right side items -->
 	<div class="right">
-
-
 </div>
 
 <?php echo Format::footer(); ?>

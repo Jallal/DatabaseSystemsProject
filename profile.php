@@ -7,50 +7,43 @@ if ($view->shouldRedirect()) {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>CSE 480 Edit User</title>
-    <link href="sightings.css" type="text/css" rel="stylesheet" />
+<head>
+    <title><?php echo $view->getName(); ?></title>
+    <link rel="stylesheet" type="text/css" href="sightings.css" media="screen" />
 </head>
+
+
+
+<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
+
 <body>
-<!-- Header and navigation -->
-<header><h1><img src="images/right-eye.jpg" width="102" height="45" alt="Eye"> Sightings</h1></header>
-
-<div id="profile">
-    <h2>Profile</h2>
-    <br><br><br>
-        <label for="name">Full Name <?php echo str_repeat('&nbsp;', 10);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo  $view->getName();?><br><br>
-        <p>
-            <label for="email">Email<?php echo str_repeat('&nbsp;', 19);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getEmail();?><br><br>
-        </p>
-
-        <p>
-            <label for="city">City<?php echo str_repeat('&nbsp;', 22);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getCity();?><br><br>
-        </p>
-
-        <p>
-            <label for="state">State<?php echo str_repeat('&nbsp;', 22);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getState();?><br><br>
-        </p>
-
-        <p>
-            <label for="privacy">Privacy<?php echo str_repeat('&nbsp;', 18);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getPrivacy();?><br><br>
-        </p>
-
-    <p>
-        <label for="birthyear">Birth Year<?php echo str_repeat('&nbsp;', 14);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getBirthyear();?><br><br>
-    </p>
-
-        <p>
-            <label for="Interest">Your interests<?php echo str_repeat('&nbsp;', 10);?>: </label><?php echo $view->presentInterests();?><br><br>
-
-        </p>
-
-
-
-    <a href="./">Back to home page</a>
-</div>
+        <div id="profile">
+            <br><br><br>
+            <div id="list8">
+                <ul>
+                    <li><h2><a href="#"><?php echo str_repeat('&nbsp;', 18);?>Profile</h2></a></li>
+                    <br><br><br>
+                    <li><a href="#">Full Name<?php echo str_repeat('&nbsp;', 10);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo  $view->getName();?></a></li>
+                    <br><br>
+                    <li><a href="#">Email<?php echo str_repeat('&nbsp;', 19);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getEmail();?></a></li>
+                    <br><br>
+                    <li><a href="#">City<?php echo str_repeat('&nbsp;', 22);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getCity();?></a></li>
+                    <br><br>
+                    <li><a href="#">State<?php echo str_repeat('&nbsp;', 20);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getState();?></a></li>
+                    <br><br>
+                    <li><a href="#">Privacy<?php echo str_repeat('&nbsp;', 17);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getPrivacy();?></a></li>
+                    <br><br>
+                    <li><a href="#">Birth Year<?php echo str_repeat('&nbsp;', 12);?>:<?php echo str_repeat('&nbsp;', 5);?></label><?php echo $view->getBirthyear();?></a></li>
+                    <br><br>
+                    <li><a href="#">Your interests<?php echo str_repeat('&nbsp;', 5);?>: </label><?php echo $view->presentInterests();?></a></li>
+                    <br><br>
+                </ul>
+            </div>
+        </div>
+    <?php echo Format::footer(); ?>
 </body>
 </html>
+
+

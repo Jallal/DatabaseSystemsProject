@@ -132,4 +132,25 @@ SQL;
 
         return true;
     }
+
+
+    public function CountFriends($id) {
+        $sql=<<<SQL
+SELECT count(*) AS COUNT from $this->tableName
+WHERE senderid=? and status='true'
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($id));
+        if($statement->rowCount() === 0) {
+            return false;
+        }
+        foreach($statement as $row) {
+            $count = $row['COUNT'];
+
+        }
+
+        return  $count;
+    }
 }

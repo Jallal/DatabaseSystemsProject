@@ -1,7 +1,12 @@
 <?php
-require "lib/site.inc.php";
+require 'lib/site.inc.php';
+$view = new UserView($site, $user, $_REQUEST);
+if ($view->shouldRedirect()) {
+    $root = $site->getRoot();
+    header("location: $root");
+    exit;
+}
 ?>
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -9,11 +14,11 @@ require "lib/site.inc.php";
     <title>CSE 480 Edit User</title>
     <link href="sightings.css" type="text/css" rel="stylesheet" />
 </head>
-<body>
-<!-- Header and navigation -->
-<header><h1><img src="images/right-eye.jpg" width="102" height="45" alt="Eye"> Sightings</h1></header>
 
-<div id="login">
+<!-- Header and navigation -->
+<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
+<body>
+<div id="profile">
     <h2>Edit User</h2>
     <form method="post" action="post/edituser-post.php">
         <?php

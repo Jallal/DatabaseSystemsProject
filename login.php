@@ -2,12 +2,13 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Sightings Login</title>
+    <title>File Sharing Login</title>
     <link href="sightings.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 <!-- Header and navigation -->
-<header><h1><img src="images/right-eye.jpg" width="102" height="45" alt="Eye"> Sightings</h1></header>
+<header><h1><img src="images/right-eye.jpg" width="140" height="70" alt="Eye">Log In</h1></header>
+
 
 <div id="login">
 <h2>Login</h2>
