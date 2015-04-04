@@ -15,7 +15,7 @@ if(isset($_POST['user']) && isset($_POST['password'])) {
 
         $_POST['error'] = $user;
         header("location: ../login.php?error=".$_POST['error'].'');
-            exit;
+        exit;
     }
 }
 
