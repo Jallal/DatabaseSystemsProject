@@ -19,6 +19,8 @@ class SearchView {
             $result =$_REQUEST['i'];
             $this->sights = new Sights($site);
             $Interests = new  Interests($site);
+            $documents = new  Documents($site);
+            $projects = new   Projects($site);
             $users = new Users($site);
             $this->freindship = new Friendship($site);
             $this->user = $user;
@@ -28,12 +30,25 @@ class SearchView {
             $this->CurrentFriends  =   $this->freindship->getCurrentFriends($this->user->getId());
             $this->UseInterests  = $Interests->UserInterests($this->user->getUserid());
             $this->freindsCount = $this->freindship->CountFriends($this->user->getId());
+            $this->ProjsCount = $projects->ProjectsCount($this->user->getUserid());
+            $this->DocsCount = $documents->DocumentsCount($this->user->getUserid());
+            $this->UserProjs = $projects->AllUserProjects($this->user->getUserid());
+            $this->UserDocs = $documents->AllUserDocuments($this->user->getUserid());
+
+
+
 
         }
 
 
     public function FriendsCount() {
         return $this->freindsCount;
+    }
+    public function getDocsCount() {
+        return $this->DocsCount;
+    }
+    public function getProjsCount() {
+        return $this->ProjsCount;
     }
 
 
@@ -167,6 +182,53 @@ HTML;
            </div>
 HTML;
         return $right;
+    }
+    public function presentCurrentDocuments(){
+
+
+        if (empty( $this->UserDocs )) {
+            return "";
+        }
+        $html = <<<HTML
+
+ <div class="options">
+		<h2>Documents</h2>
+HTML;
+
+        foreach( $this->UserDocs as $document) {
+            $documentId = $document->getId();
+            $name = $document->getName();
+            $html .= <<<HTML
+<p><a href="#=$documentId">$name</a></p>
+HTML;
+        }
+        $html .= '</div>';
+        return $html;
+
+
+    }
+
+    public function presentCurrentProjects(){
+
+        if (empty($this->UserProjs)) {
+            return "";
+        }
+        $html = <<<HTML
+<div class="options">
+		<h2>Projects</h2>
+HTML;
+
+        foreach($this->UserProjs as $project) {
+            $projectId = $project->getId();
+            $name = $project->getName();
+            $html .=  <<<HTML
+<p><a href="#=$projectId ">$name</a></p>
+HTML;
+        }
+        $html .= '</div>';
+        return $html;
+
+
     }
 
 

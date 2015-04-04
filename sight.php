@@ -18,7 +18,7 @@ $name = $view->getName();
 </head>
 
 
-<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
+<?php echo Format::header($view->getName(),$view->getProjsCount(),$view->getDocsCount(),$view->FriendsCount()); ?>
 <body>
 <!-- Main body of page -->
 <div class="main">

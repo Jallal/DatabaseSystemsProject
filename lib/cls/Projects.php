@@ -17,4 +17,49 @@ class Projects  extends Table {
         parent::__construct($site, "Project");
     }
 
+
+    public function AllUserProjects($userid) {
+        $sql=<<<SQL
+SELECT *from $this->tableName
+WHERE ownerid=?
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($userid));
+        if ($statement->rowCount() === 0) {
+            return false;
+        }
+        $countries = $statement->fetchAll();
+
+
+        $result = array();  // Empty initial array
+        foreach ($countries as $row) {
+            $result[] = new  Project($row);
+        }
+
+
+        return $result;
+    }
+
+    public function ProjectsCount($id) {
+        $sql=<<<SQL
+SELECT count(*) AS COUNT from $this->tableName
+WHERE ownerid=?
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($id));
+        if($statement->rowCount() === 0) {
+            return false;
+        }
+        foreach($statement as $row) {
+            $count = $row['COUNT'];
+
+        }
+
+        return  $count;
+    }
+
 }

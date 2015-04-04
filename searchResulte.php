@@ -11,7 +11,7 @@ $name = $view->getName();
     <link rel="stylesheet" type="text/css" href="sightings.css" media="screen" />
 </head>
 
-<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
+<?php echo Format::header($view->getName(),$view->getProjsCount(),$view->getDocsCount(),$view->FriendsCount()); ?>
 <body>
 <!-- Main body of page -->
 <div class="main">
@@ -22,6 +22,10 @@ $name = $view->getName();
         <?php echo $view->presentCurrentFriends();?>
         <br>
         <?php echo $view->presentPendingRequests();?>
+        <br>
+        <?php echo $view->presentCurrentProjects();?>
+        <br>
+        <?php echo $view->presentCurrentDocuments();?>
     </div>
 
     <!-- Right side items -->

@@ -11,12 +11,16 @@ class UserView {
     private $UseInterests;
     private $redirect = false;
     private $freindsCount;
-    private $CurrentDocuments;
-    private $CurrentProjects;
+    private $UserDocs;
+    private $UserProjs;
+    private $DocsCount;
+    private $ProjsCount;
 
     public function __construct(Site $site, User $user=null, $request) {
         $friendship = new  Friendship($site);
         $Interests = new  Interests($site);
+        $documents = new  Documents($site);
+        $projects = new   Projects($site);
         if (isset($request['i'])) {
             $users = new Users($site);
             $this->user = $users->get($request['i']);
@@ -24,6 +28,10 @@ class UserView {
             $this->CurrentFriends  = $friendship->getCurrentFriends($this->user->getId());
             $this->freindsCount = $friendship->CountFriends($this->user->getId());
             $this->UseInterests  = $Interests->UserInterests($this->user->getUserid());
+            $this->ProjsCount = $projects->ProjectsCount($this->user->getUserid());
+            $this->DocsCount = $documents->DocumentsCount($this->user->getUserid());
+            $this->UserProjs = $projects->AllUserProjects($this->user->getUserid());
+            $this->UserDocs = $documents->AllUserDocuments($this->user->getUserid());
             if ($this->user === null) $this->redirect = true;
         } else {
             $this->user = $user;
@@ -35,8 +43,14 @@ class UserView {
             $this->CurrentFriends  = $friendship->getCurrentFriends($this->user->getId());
             $this->UseInterests  = $Interests->UserInterests($this->user->getUserid());
             $this->freindsCount = $friendship->CountFriends($this->user->getId());
+            $this->ProjsCount = $projects->ProjectsCount($this->user->getUserid());
+            $this->DocsCount = $documents->DocumentsCount($this->user->getUserid());
+            $this->UserProjs = $projects->AllUserProjects($this->user->getUserid());
+            $this->UserDocs = $documents->AllUserDocuments($this->user->getUserid());
 
         }
+
+
     }
 
     /**
@@ -44,6 +58,12 @@ class UserView {
      */
     public function shouldRedirect() {
         return $this->redirect;
+    }
+    public function getDocsCount() {
+        return $this->DocsCount;
+    }
+    public function getProjsCount() {
+        return $this->ProjsCount;
     }
 
     public function FriendsCount() {
@@ -188,22 +208,21 @@ HTML;
 
     public function presentCurrentDocuments(){
 
-        if (empty($this->CurrentDocuments)) {
+
+        if (empty( $this->UserDocs )) {
             return "";
         }
         $html = <<<HTML
 
- <div id="button">
-    <ul>
+ <div class="options">
 		<h2>Documents</h2>
 HTML;
 
-        foreach($this->CurrentDocuments as $document) {
+        foreach( $this->UserDocs as $document) {
             $documentId = $document->getId();
             $name = $document->getName();
             $html .= <<<HTML
-<p><a href="profile.php?i=$documentId">$name</a></p>
-<div class="farright2"><a href="post/sights-post.php?delete=$documentId">Remove</a></div>
+<p><a href="#=$documentId">$name</a></p>
 HTML;
         }
         $html .= '</div>';
@@ -214,7 +233,7 @@ HTML;
 
     public function presentCurrentProjects(){
 
-        if (empty($this->CurrentProjects)) {
+        if (empty($this->UserProjs)) {
             return "";
         }
         $html = <<<HTML
@@ -222,12 +241,11 @@ HTML;
 		<h2>Projects</h2>
 HTML;
 
-        foreach($this->CurrentProjects as $project) {
+        foreach($this->UserProjs as $project) {
             $projectId = $project->getId();
             $name = $project->getName();
             $html .=  <<<HTML
-<p><a href="profile.php?i=$projectId ">$name</a></p>
-<div class="farright2"><a href="post/sights-post.php?delete=$projectId">Remove</a></div>
+<p><a href="#=$projectId ">$name</a></p>
 HTML;
         }
         $html .= '</div>';

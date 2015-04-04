@@ -20,14 +20,14 @@ class Document {
      * @param $row Row from the sight table in the database
      */
     public function __construct($row) {
-        $this->id = $row['id'];
-        $this->projid = $row['projid'];
-        $this->projownerid = $row['projownerid'];
-        $this->creatorid = strtotime($row['creatorid']);
-        $this->filename = $row['filename'];
-        $this->version = $row['version'];
-        $this->create_time = $row['create_time'];
-        $this->parentdocid = $row['parentdocid'];
+        $this->id = $row['DocID'];
+        $this->projid = $row['ProjID'];
+        $this->projownerid = $row['ProjOwnerID'];
+        $this->creatorid = $row['creatorID'];
+        $this->filename = $row['Filename'];
+        $this->version = $row['versionNo'];
+        $this->create_time = strtotime($row['create_time']);
+        $this->parentdocid = $row['parentDocID'];
     }
 
     /**

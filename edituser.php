@@ -16,7 +16,7 @@ if ($view->shouldRedirect()) {
 </head>
 
 <!-- Header and navigation -->
-<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
+<?php echo Format::header($view->getName(),$view->getProjsCount(),$view->getDocsCount(),$view->FriendsCount()); ?>
 <body>
 <div id="profile">
     <h2>Edit User</h2>
@@ -63,7 +63,8 @@ if ($view->shouldRedirect()) {
             <input type="text" id="birthyear" name="birthyear"></p>
         <p><input type="submit"></p>
     </form>
-    <a href="./">Back to home page</a>
 </div>
+    <?php echo Format::footer(); ?>
+
 </body>
 </html>

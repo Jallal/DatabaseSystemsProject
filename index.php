@@ -17,7 +17,7 @@ if ($view->shouldRedirect()) {
 
 
 
-<?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
+<?php echo Format::header($view->getName(),$view->getProjsCount(),$view->getDocsCount(),$view->FriendsCount()); ?>
 
 <body>
 
@@ -35,6 +35,10 @@ if ($view->shouldRedirect()) {
 		<?php echo $view->presentCurrentFriends();?>
 		<br>
 		<?php echo $view->presentPendingRequests();?>
+		<br>
+		<?php echo $view->presentCurrentProjects();?>
+		<br>
+		<?php echo $view->presentCurrentDocuments();?>
 
 
 	</div>

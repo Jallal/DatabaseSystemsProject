@@ -16,9 +16,9 @@ class Project {
      * @param $row Row from the sight table in the database
      */
     public function __construct($row) {
-        $this->id = $row['id'];
+        $this->id = $row['ProjID'];
         $this->name = $row['title'];
-        $this->ownerid = $row['ownerid`'];
+        $this->ownerid = $row['OwnerID'];
 
     }
 
