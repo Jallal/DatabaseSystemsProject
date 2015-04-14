@@ -10,13 +10,14 @@ class Search {
 
     private $id;        ///< ID for this the sight in the table
     private $name;      ///< The name of the sight
+    private $privacy;
 
 
 
     public function __construct($row) {
         $this->id = $row['id'];
         $this->name = $row['name'];
-
+        $this->privacy = $row['privacy'];
     }
 
     public function getId()
@@ -25,10 +26,13 @@ class Search {
     }
 
 
-
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getPrivacy() {
+        return $this->privacy;
     }
 
 

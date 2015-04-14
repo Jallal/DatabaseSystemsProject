@@ -73,13 +73,28 @@ HTML;
             foreach ($this->results as $key => $value) {
                 $id = $value->getId();
                 $name = $value->getName();
-                    $html .= ' <div class="sighting">';
-                    if (!($this->freindship->doesfreindshipExist($id, $currentuserID))&&($id!==$currentuserID)) {
-                        $AddFriend = $this->AddAFreind($id, $value);
-                        $html .= '<div>' . $AddFriend . '</div>';
-                    }
-                    $html .= '<h2><a href="sight.php?i=' . $id . '">' . $name . '</a></h2>';
+                $html .= '<div class="sighting">';
+                if (!($this->freindship->doesfreindshipExist($id, $currentuserID)
+                        || $this->freindship->doesPendingExist($id, $currentuserID)) && ($id!==$currentuserID)) {
+                    $AddFriend = $this->AddAFreind($id, $value);
+                    $html .= '<div>' . $AddFriend . '</div>';
+                }
+
+                if ($value->getPrivacy() == 'low') {
+                    $html .= '<h2><a href="profile.php?i=' . $id . '">' . $name . '</a></h2>';
                     $html .= '</div>';
+                } elseif ($value->getPrivacy() == 'medium') {
+                    $html .= '<h2><a href="profile.php?i=' . $id . '">' . $name . '</a></h2>';
+                    $html .= '</div>';
+                } else {
+                    if ($this->freindship->doesfreindshipExist($id, $currentuserID) && ($id !== $currentuserID)) {
+                        $html .= '<h2><a href="profile.php?i=' . $id . '">' . $name . '</a></h2>';
+                        $html .= '</div>';
+                    } else {
+                        $html .= '<h2>' . $name . '</h2>';
+                        $html .= '</div>';
+                    }
+                }
 
             }
 
