@@ -35,20 +35,11 @@ public function RemoveFriend($receiver, $sender){
 
     $sql=<<<SQL
 DELETE FROM $this->tableName
-WHERE senderid=? AND  recipientid=?;
+WHERE (senderid=? AND recipientid=?) or (senderid=? and recipientid=?)
 SQL;
 
     $statement = $this->pdo()->prepare($sql);
-    $statement->execute(array($receiver, $sender));
-
-
-    $sql=<<<SQL
-DELETE FROM $this->tableName
-WHERE senderid=? AND  recipientid=?;
-SQL;
-
-    $statement = $this->pdo()->prepare($sql);
-    $statement->execute(array($sender,$receiver));
+    $statement->execute(array($receiver, $sender, $sender, $receiver));
 
 }
 
@@ -61,14 +52,6 @@ SQL;
 
         $statement = $this->pdo()->prepare($sql);
         $statement->execute(array($sender, $receiver));
-
-        $sql=<<<SQL
-INSERT INTO $this->tableName(senderid, recipientid, status)
-VALUES(?, ?, 'true')
-SQL;
-
-        $statement = $this->pdo()->prepare($sql);
-        $statement->execute(array($receiver, $sender));
     }
 
 
@@ -99,19 +82,24 @@ SQL;
     public function getCurrentFriends($id) {
         $sql=<<<SQL
 SELECT * from $this->tableName
-WHERE senderid=? and status='true'
+WHERE (senderid=? or recipientid=?) and status='true'
 SQL;
 
         $pdo = $this->pdo();
         $statement = $pdo->prepare($sql);
-        $statement->execute(array($id));
+        $statement->execute(array($id,$id));
 
         $users = new Users($this->site);
 
         $result = array();  // Empty initial array
         foreach($statement as $row) {
-            $user = $users->get($row['recipientid']);
-            $result[] = $user;
+            if ($row['recipientid'] !== $id) {
+                $user = $users->get($row['recipientid']);
+                $result[] = $user;
+            } elseif($row['senderid'] !== $id) {
+                $user = $users->get($row['senderid']);
+                $result[] = $user;
+            }
         }
 
         return $result;
@@ -120,12 +108,12 @@ SQL;
     public function doesfreindshipExist($id,$freindsId) {
         $sql=<<<SQL
 SELECT * from $this->tableName
-WHERE senderid=? and recipientid=? and status='true'
+WHERE (senderid=? and recipientid=?) OR (senderid=? and recipientid=?) and status='true'
 SQL;
 
         $pdo = $this->pdo();
         $statement = $pdo->prepare($sql);
-        $statement->execute(array($id,$freindsId));
+        $statement->execute(array($id,$freindsId,$freindsId,$id));
         if($statement->rowCount() === 0) {
             return false;
         }
@@ -137,14 +125,15 @@ SQL;
     public function CountFriends($id) {
         $sql=<<<SQL
 SELECT count(*) AS COUNT from $this->tableName
-WHERE senderid=? and status='true'
+WHERE (senderid=? or recipientid=?) and status='true'
 SQL;
 
         $pdo = $this->pdo();
         $statement = $pdo->prepare($sql);
-        $statement->execute(array($id));
+        $statement->execute(array($id,$id));
+        $count = 0;
         if($statement->rowCount() === 0) {
-            return false;
+            return $count;
         }
         foreach($statement as $row) {
             $count = $row['COUNT'];

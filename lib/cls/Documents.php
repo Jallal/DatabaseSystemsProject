@@ -53,8 +53,9 @@ SQL;
         $pdo = $this->pdo();
         $statement = $pdo->prepare($sql);
         $statement->execute(array($id));
+        $count = 0;
         if($statement->rowCount() === 0) {
-            return false;
+            return $count;
         }
         foreach($statement as $row) {
             $count = $row['COUNT'];
