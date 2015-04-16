@@ -121,6 +121,22 @@ SQL;
         return true;
     }
 
+    public function doesPendingExist($id,$freindsId) {
+        $sql=<<<SQL
+SELECT * from $this->tableName
+WHERE (senderid=? and recipientid=?) OR (senderid=? and recipientid=?) and status='pending'
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($id,$freindsId,$freindsId,$id));
+        if($statement->rowCount() === 0) {
+            return false;
+        }
+
+        return true;
+    }
+
 
     public function CountFriends($id) {
         $sql=<<<SQL
