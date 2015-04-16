@@ -73,11 +73,13 @@ HTML;
             foreach ($this->results as $key => $value) {
                 $id = $value->getId();
                 $name = $value->getName();
+                $addToProject = $this->addToProject($value);
                     $html .= ' <div class="sighting">';
                     if (!($this->freindship->doesfreindshipExist($id, $currentuserID))&&($id!==$currentuserID)) {
-                        $AddFriend = $this->AddAFreind($id, $value);
+                        $AddFriend = $this->AddAFreind($value);
                         $html .= '<div>' . $AddFriend . '</div>';
                     }
+                    $html .= '<div>' . $addToProject . '</div>';
                     $html .= '<h2><a href="sight.php?i=' . $id . '">' . $name . '</a></h2>';
                     $html .= '</div>';
 
@@ -87,7 +89,7 @@ HTML;
         }
     }
 
-    public function AddAFreind($id, $currentUser){
+    public function AddAFreind($currentUser){
         $userId = $currentUser->getId();
 
             $html = <<<HTML
@@ -98,6 +100,19 @@ HTML;
 
             return $html;
         }
+
+
+    public function addToProject($invitee){
+        $userId = $invitee->getId();
+
+        $html = <<<HTML
+HTML;
+        $html .= ' <div class="center">';
+        $html .= '<p><a href="post/sights-post.php?AddToProject=' .$userId. '">Add to Project </a></p>';
+        $html .= '</div>';
+
+        return $html;
+    }
 
 
     public function presentCurrentFriends(){

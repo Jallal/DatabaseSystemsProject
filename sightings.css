@@ -50,22 +50,27 @@ nav form input {
 }
 
 nav a {
+    text-decoration: none;
     padding: 0 0.5em 0 0.5em;
 }
 nav a:link, nav a:visited {
+    text-decoration: none;
     color: white;
 }
 
 nav a:hover {
+    text-decoration: none;
     color: #ddffdd;
     background: #38864c;
 }
 
 a:link {
+    text-decoration: none;
     color: #004000;
 }
 
 a:visited {
+    text-decoration: none;
     color: #008000;
 }
 
@@ -145,10 +150,12 @@ h1 img {
 
 
 html>body .options  a {
+    text-decoration: none;
 width : 100%;
   }
 
 .options  a:hover {
+    text-decoration: none;
         color: #F5DEB3;
     }
 
@@ -176,7 +183,9 @@ h2 {
 .sighting img {
     vertical-align: middle;
 }
-
+.sighting a {
+    text-decoration: none;
+}
 .comments {
     font-size: 0.9em;
     margin-left: 1em;
@@ -313,3 +322,9 @@ footer p {
 #list8 ul li a:hover {  -moz-transform:rotate(-5deg); -moz-box-shadow:10px 10px 20px #000000;
     -webkit-transform:rotate(-5deg); -webkit-box-shadow:10px 10px 20px #000000;
     transform:rotate(-5deg); box-shadow:10px 10px 20px #000000; }
+
+
+
+
+
+
