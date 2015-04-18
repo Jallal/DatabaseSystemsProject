@@ -34,10 +34,6 @@ class SearchView {
             $this->DocsCount = $documents->DocumentsCount($this->user->getUserid());
             $this->UserProjs = $projects->AllUserProjects($this->user->getUserid());
             $this->UserDocs = $documents->AllUserDocuments($this->user->getUserid());
-
-
-
-
         }
 
 
@@ -73,7 +69,7 @@ HTML;
             foreach ($this->results as $key => $value) {
                 $id = $value->getId();
                 $name = $value->getName();
-<<<<<<< HEAD
+
                 $addToProject = $this->addToProject($value);
                     $html .= ' <div class="sighting">';
                     if (!($this->freindship->doesfreindshipExist($id, $currentuserID))&&($id!==$currentuserID)) {
@@ -82,7 +78,7 @@ HTML;
                     }
                     $html .= '<div>' . $addToProject . '</div>';
                     $html .= '<h2><a href="sight.php?i=' . $id . '">' . $name . '</a></h2>';
-=======
+
                 $html .= '<div class="sighting">';
                 if (!($this->freindship->doesfreindshipExist($id, $currentuserID)
                         || $this->freindship->doesPendingExist($id, $currentuserID)) && ($id!==$currentuserID)) {
@@ -95,7 +91,7 @@ HTML;
                     $html .= '</div>';
                 } elseif ($value->getPrivacy() == 'medium') {
                     $html .= '<h2><a href="profile.php?i=' . $id . '">' . $name . '</a></h2>';
->>>>>>> cb129134bc05d0f29225031c1961212fc01f904d
+
                     $html .= '</div>';
                 } else {
                     if ($this->freindship->doesfreindshipExist($id, $currentuserID) && ($id !== $currentuserID)) {
