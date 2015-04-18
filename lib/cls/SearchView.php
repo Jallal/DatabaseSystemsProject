@@ -68,7 +68,7 @@ class SearchView {
 HTML;
             foreach ($this->results as $key => $value) {
                 $id = $value->getId();
-                $name = $value->getName();
+                $userid = $value->getUserid();
 
                 $addToProject = $this->addToProject($value);
                     $html .= ' <div class="sighting">';
@@ -77,7 +77,7 @@ HTML;
                         $html .= '<div>' . $AddFriend . '</div>';
                     }
                     $html .= '<div>' . $addToProject . '</div>';
-                    $html .= '<h2><a href="sight.php?i=' . $id . '">' . $name . '</a></h2>';
+                    $html .= '<h2><a href="sight.php?i=' . $id . '">' . $userid  . '</a></h2>';
 
                 $html .= '<div class="sighting">';
                 if (!($this->freindship->doesfreindshipExist($id, $currentuserID)
@@ -87,18 +87,18 @@ HTML;
                 }
 
                 if ($value->getPrivacy() == 'low') {
-                    $html .= '<h2><a href="profile.php?i=' . $id . '">' . $name . '</a></h2>';
+                    $html .= '<h2><a href="profile.php?i=' . $id . '">' . $userid  . '</a></h2>';
                     $html .= '</div>';
                 } elseif ($value->getPrivacy() == 'medium') {
-                    $html .= '<h2><a href="profile.php?i=' . $id . '">' . $name . '</a></h2>';
+                    $html .= '<h2><a href="profile.php?i=' . $id . '">' . $userid  . '</a></h2>';
 
                     $html .= '</div>';
                 } else {
                     if ($this->freindship->doesfreindshipExist($id, $currentuserID) && ($id !== $currentuserID)) {
-                        $html .= '<h2><a href="profile.php?i=' . $id . '">' . $name . '</a></h2>';
+                        $html .= '<h2><a href="profile.php?i=' . $id . '">' . $userid  . '</a></h2>';
                         $html .= '</div>';
                     } else {
-                        $html .= '<h2>' . $name . '</h2>';
+                        $html .= '<h2>' . $userid . '</h2>';
                         $html .= '</div>';
                     }
                 }
