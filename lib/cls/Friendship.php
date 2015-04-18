@@ -108,7 +108,7 @@ SQL;
     public function doesfreindshipExist($id,$freindsId) {
         $sql=<<<SQL
 SELECT * from $this->tableName
-WHERE (senderid=? and recipientid=?) OR (senderid=? and recipientid=?) and status='true'
+WHERE ((senderid=? and recipientid=?) OR (senderid=? and recipientid=?)) and status='true'
 SQL;
 
         $pdo = $this->pdo();
@@ -124,7 +124,7 @@ SQL;
     public function doesPendingExist($id,$freindsId) {
         $sql=<<<SQL
 SELECT * from $this->tableName
-WHERE (senderid=? and recipientid=?) OR (senderid=? and recipientid=?) and status='pending'
+WHERE ((senderid=? and recipientid=?) OR (senderid=? and recipientid=?)) and status='pending'
 SQL;
 
         $pdo = $this->pdo();
