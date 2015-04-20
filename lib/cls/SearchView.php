@@ -10,6 +10,7 @@ class SearchView {
 
     private $user;
     private $results;
+    private $site;
     private $sights;
     private $freindship;
     private  $freindsCount;
@@ -17,6 +18,7 @@ class SearchView {
     
         public function __construct(Site $site, $user,$request){
             $result =$_REQUEST['i'];
+            $this->site = $site;
             $this->sights = new Sights($site);
             $Interests = new  Interests($site);
             $documents = new  Documents($site);
@@ -82,20 +84,21 @@ HTML;
                 $html .= '<div class="sighting">';
                 if (!($this->freindship->doesfreindshipExist($id, $currentuserID)
                         || $this->freindship->doesPendingExist($id, $currentuserID)) && ($id!==$currentuserID)) {
-                    $AddFriend = $this->AddAFreind($id, $value);
+                    $AddFriend = $this->AddAFreind($value);
                     $html .= '<div>' . $AddFriend . '</div>';
                 }
 
+                $root = $this->site->getRoot();
                 if ($value->getPrivacy() == 'low') {
-                    $html .= '<h2><a href="profile.php?i=' . $id . '">' . $userid  . '</a></h2>';
+                    $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
                     $html .= '</div>';
                 } elseif ($value->getPrivacy() == 'medium') {
-                    $html .= '<h2><a href="profile.php?i=' . $id . '">' . $userid  . '</a></h2>';
+                    $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
 
                     $html .= '</div>';
                 } else {
                     if ($this->freindship->doesfreindshipExist($id, $currentuserID) && ($id !== $currentuserID)) {
-                        $html .= '<h2><a href="profile.php?i=' . $id . '">' . $userid  . '</a></h2>';
+                        $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
                         $html .= '</div>';
                     } else {
                         $html .= '<h2>' . $userid . '</h2>';
