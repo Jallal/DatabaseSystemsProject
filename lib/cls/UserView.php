@@ -15,8 +15,12 @@ class UserView {
     private $UserProjs;
     private $DocsCount;
     private $ProjsCount;
+    private $site;
+    private $viewingUser;
 
     public function __construct(Site $site, User $user=null, $request) {
+        $this->site = $site;
+        $this->viewingUser = $user;
         $friendship = new  Friendship($site);
         $Interests = new  Interests($site);
         $documents = new  Documents($site);
@@ -35,6 +39,7 @@ class UserView {
             if ($this->user === null) $this->redirect = true;
         } else {
             $this->user = $user;
+            $this->viewingUser = $user;
         }
         if (!$this->redirect) {
             $sights = new Sights($site);
@@ -123,9 +128,13 @@ HTML;
 
 
     public function presentCurrentFriends(){
-
-        if (empty($this->CurrentFriends)) {
-            return "";
+        if($this->user->getId() !== $this->viewingUser->getId()) {
+            $invitations = new Invitations($this->site);
+            $userid = $this->user->getUserid();
+            $vieweruserid = $this->viewingUser->getUserid();
+            if (empty($this->CurrentFriends) || ($this->user->getPrivacy() === "medium" && !$invitations->isCollaborator($userid, $vieweruserid))) {
+                return "";
+            }
         }
         $html = <<<HTML
 <div class="options">
@@ -149,7 +158,7 @@ HTML;
 
     public function presentPendingRequests(){
 
-        if (empty($this->userPendingFriends)) {
+        if (empty($this->userPendingFriends) || ($this->user->getId() != $this->viewingUser->getId())) {
             return "";
         }
         $html = <<<HTML

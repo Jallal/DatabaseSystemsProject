@@ -65,4 +65,14 @@ SQL;
         return  $count;
     }
 
+    public function createDocument($name, $projid, $projownerid, $creatorid) {
+        $sql = <<< SQL
+INSERT INTO $this->tableName (ProjID, ProjOwnerID, creatorID, Filename, versionNo, create_time)
+values (?, ?, ?, ?, ?, ?)
+SQL;
+
+        $statement = $this->pdo()->prepare($sql);
+        $statement->execute(array($projid, $projownerid, $creatorid, $name, 1, date("Y-m-d H:i:s")));
+    }
+
 }

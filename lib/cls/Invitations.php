@@ -52,7 +52,7 @@ SQL;
         $sql = <<<SQL
 SELECT a.*
 from $this->tableName a, $this->tableName b
-WHERE (a.ProjID = b.ProjID) and (a.collaboratorID=? and b.collaboratorID=?)
+WHERE (a.ProjID = b.ProjID) and (a.collaboratorID=? and b.collaboratorID=?) and (a.status='true' and b.status='true')
 SQL;
         $statement = $pdo->prepare($sql);
         $statement->execute(array($userid,$collab));
