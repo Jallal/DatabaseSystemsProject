@@ -129,10 +129,7 @@ HTML;
 
     public function presentCurrentFriends(){
         if($this->user->getId() !== $this->viewingUser->getId()) {
-            $invitations = new Invitations($this->site);
-            $userid = $this->user->getUserid();
-            $vieweruserid = $this->viewingUser->getUserid();
-            if (empty($this->CurrentFriends) || ($this->user->getPrivacy() === "medium" && !$invitations->isCollaborator($userid, $vieweruserid))) {
+            if ($this->user->getPrivacy() !== "low") {
                 return "";
             }
         }
@@ -158,7 +155,7 @@ HTML;
 
     public function presentPendingRequests(){
 
-        if (empty($this->userPendingFriends) || ($this->user->getId() != $this->viewingUser->getId())) {
+        if (empty($this->userPendingFriends) || ($this->user->getId() !== $this->viewingUser->getId())) {
             return "";
         }
         $html = <<<HTML
@@ -199,6 +196,21 @@ HTML;
 
 
     public function presentSuper() {
+        if ($this->user->getId() !== $this->viewingUser->getId()) {
+            $friendship = new Friendship($this->site);
+            if ($this->user->getPrivacy() === "high" && !$friendship->doesfreindshipExist($this->user->getId(), $this->viewingUser->getId())) {
+                return "";
+            } else {
+                $id = $this->user->getId();
+                $right = <<<HTML
+<div class="options">
+          <h2>Welcome</h2>
+          <p><a href="profile.php?i=$id">View Profile</a></p>
+HTML;
+                $right.='</div>';
+                return $right;
+            }
+        }
         $name=$this->user->getName();
         $id = $this->user->getId();
         $email = $this->user->getEmail();
