@@ -13,6 +13,7 @@ class SearchView {
     private $site;
     private $sights;
     private $freindship;
+    private $invitations;
     private  $freindsCount;
 
     
@@ -25,6 +26,7 @@ class SearchView {
             $projects = new   Projects($site);
             $users = new Users($site);
             $this->freindship = new Friendship($site);
+            $this->invitations = new Invitations($site);
             $this->user = $user;
             $this->results = $users->searchForAUser($result);
             $this->userSights =  $this->sights->getSightsForUser($this->user->getId());
@@ -61,6 +63,7 @@ class SearchView {
     public function presentSearch() {
 
         $currentuserID = $this->user->getId();
+        $currentusername = $this->user->getUserid();
 
         if (sizeof($this->results) > 0 ) {
 
@@ -92,9 +95,8 @@ HTML;
                 if ($value->getPrivacy() == 'low') {
                     $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
                     $html .= '</div>';
-                } elseif ($value->getPrivacy() == 'medium') {
+                } elseif ($value->getPrivacy() == 'medium' && $this->invitations->isCollaborator($currentusername, $userid)) {
                     $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
-
                     $html .= '</div>';
                 } else {
                     if ($this->freindship->doesfreindshipExist($id, $currentuserID) && ($id !== $currentuserID)) {
