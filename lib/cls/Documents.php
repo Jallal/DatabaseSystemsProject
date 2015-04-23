@@ -135,4 +135,67 @@ SQL;
 
         return $result;
     }
+
+    public function deleteDoc($docid) {
+        // get the document were deleting
+        $sql = <<< SQL
+SELECT * from $this->tableName
+where DocID=?
+SQL;
+
+        $statement = $this->pdo()->prepare($sql);
+        $statement->execute(array($docid));
+
+        $deletedoc = null;
+        foreach($statement as $row) {
+            $deletedoc = new Document($row);
+        }
+
+        // if its the original document, then delete it and all of its children
+        if ($deletedoc->getId() === 1) {
+            $projid = $deletedoc->getProjid();
+            $name = $deletedoc->getName();
+            $sql = <<< SQL
+DELETE from $this->tableName
+where ProjID=? and Filename=?
+SQL;
+
+            $statement = $this->pdo()->prepare($sql);
+            $statement->execute(array($projid, $name));
+        } else {
+            // if not, get the deleted document's child
+            $projid = $deletedoc->getProjid();
+
+            $sql = <<<SQL
+SELECT * from $this->tableName
+where parentDocID=? and ProjID=?
+SQL;
+            $statement = $this->pdo()->prepare($sql);
+            $statement->execute(array($docid, $projid));
+
+            $updatedoc = null;
+            foreach($statement as $row) {
+                $updatedoc = new Document($row);
+            }
+
+            // delete the document we want to delete
+            $sql = <<<SQL
+DELETE from $this->tableName
+where DocID=?
+SQL;
+
+            $statement = $this->pdo()->prepare($sql);
+            $statement->execute(array($docid));
+
+            // then update the deleted doc's child to point to the deleted doc's parent
+            $sql = <<<SQL
+UPDATE $this->tableName
+SET parentDocID=?
+where DocID=?
+SQL;
+
+            $statement = $this->pdo()->prepare($sql);
+            $statement->execute(array($deletedoc->getParentdocid(), $updatedoc->getId()));
+        }
+    }
 }

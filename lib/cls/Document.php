@@ -7,14 +7,15 @@
  */
 
 class Document {
-    private $id;             ///< ID for this sight in the sight table
-    private $projid;           ///< name for the person sighted in the sight table
-    private $projownerid;    ///< description of the sighting
-    private $creatorid;        ///< date and time of the sighting
-    private $filename;         ///< id of the person sighted
+    private $id;
+    private $projid;
+    private $projownerid;
+    private $creatorid;
+    private $filename;
     private $version;
     private $create_time;
     private $parentdocid;
+
     /**
      * Constructor
      * @param $row Row from the sight table in the database
@@ -29,6 +30,55 @@ class Document {
         $this->create_time = strtotime($row['create_time']);
         $this->parentdocid = $row['parentDocID'];
     }
+
+    /**
+     * @return mixed
+     */
+    public function getProjid()
+    {
+        return $this->projid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProjownerid()
+    {
+        return $this->projownerid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatorid()
+    {
+        return $this->creatorid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParentdocid()
+    {
+        return $this->parentdocid;
+    }
+
 
     /**
      * @return mixed
