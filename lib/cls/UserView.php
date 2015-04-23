@@ -58,6 +58,20 @@ class UserView {
 
     }
 
+    public function isSameUser() {
+        return ($this->user->getId() === $this->viewingUser->getId());
+    }
+
+    public function areCollabs() {
+        $invitations = new Invitations($this->site);
+        return $invitations->isCollaborator($this->getUsername(), $this->viewingUser->getUserid());
+    }
+
+    public function areFriends() {
+        $friendship = new Friendship($this->site);
+        return $friendship->doesfreindshipExist($this->user->getId(), $this->viewingUser->getId());
+    }
+
     /**
      * @return boolean redirect
      */
@@ -96,9 +110,14 @@ class UserView {
     {
         return $this->user->getPrivacy();
     }
+
     public function getBirthyear()
     {
         return $this->user->getBirthyear();
+    }
+
+    public function getUsername() {
+        return $this->user->getUserid();
     }
 
     public function presentInterests(){
