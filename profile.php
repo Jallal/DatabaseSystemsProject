@@ -60,7 +60,8 @@ if ($view->shouldRedirect()) {
 <br><br>
 HTML;
                         } else {
-                            if ($view->areCollabs() || $view->areFriends()) {
+                            if (($view->getPrivacy() === "medium" && ($view->areCollabs() || $view->areFriends()))
+                                || ($view->getPrivacy() === "high" && $view->areFriends())) {
                                 echo <<< HTML
 <li><a href="#">Full Name$repeatsName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$name</a></li>
 <br><br>
@@ -80,12 +81,17 @@ HTML;
 <br><br>
 HTML;
                             } else {
-                                echo <<< HTML
+                                if ($view->getPrivacy() === "high") {
+                                    echo "";
+                                }
+                                else {
+                                    echo <<< HTML
 <li><a href="#">UserName$repeatsName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$username</a></li>
 <br><br>
 <li><a href="#">Your interests&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: $interests</a></li>
 <br><br>
 HTML;
+                                }
                             }
                         }
                         ?>
