@@ -43,9 +43,11 @@ if ($view->shouldRedirect()) {
 
 	</div>
 
-
 	<!-- Right side items -->
 	<div class="right">
+
+		<?php echo $view->MainPage();?>
+
 </div>
 
 <?php echo Format::footer(); ?>

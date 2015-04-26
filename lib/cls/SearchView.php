@@ -75,16 +75,16 @@ HTML;
                 $id = $value->getId();
                 $userid = $value->getUserid();
 
-                $addToProject = $this->addToProject($value);
+
                     $html .= ' <div class="sighting">';
                     if (!($this->freindship->doesfreindshipExist($id, $currentuserID))&&($id!==$currentuserID)) {
                         $AddFriend = $this->AddAFreind($value);
-                        $html .= '<div>' . $AddFriend . '</div>';
+                       // $html .= '<div>' . $AddFriend . '</div>';
                     }
-                    $html .= '<div>' . $addToProject . '</div>';
-                    $html .= '<h2><a href="sight.php?i=' . $id . '">' . $userid  . '</a></h2>';
 
-                $html .= '<div class="sighting">';
+                    //$html .= '<h2><a href="sight.php?i=' . $id . '">' . $userid  . '</a></h2>';
+
+               //$html .= '<div class="sighting">';
                 if (!($this->freindship->doesfreindshipExist($id, $currentuserID)
                         || $this->freindship->doesPendingExist($id, $currentuserID)) && ($id!==$currentuserID)) {
                     $AddFriend = $this->AddAFreind($value);
@@ -127,17 +127,7 @@ HTML;
         }
 
 
-    public function addToProject($invitee){
-        $userId = $invitee->getId();
 
-        $html = <<<HTML
-HTML;
-        $html .= ' <div class="center">';
-        $html .= '<p><a href="post/sights-post.php?AddToProject=' .$userId. '">Add to Project </a></p>';
-        $html .= '</div>';
-
-        return $html;
-    }
 
 
     public function presentCurrentFriends(){

@@ -18,6 +18,25 @@ class Projects  extends Table {
     }
 
 
+
+    public function addAProject($userid,$title) {
+        $time =  date("Y-m-d H:i:s");
+        $sql=<<<SQL
+INSERT INTO  $this->tableName(OwnerID,title,time) VALUES(?,?,?)
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        if ($statement->execute(array($userid,$title,$time))) {
+            return true;
+        }else{
+
+            return false;
+        }
+
+    }
+
+
     public function AllUserProjects($userid) {
         $sql=<<<SQL
 SELECT *from $this->tableName
@@ -61,5 +80,43 @@ SQL;
 
         return  $count;
     }
+
+
+
+
+    public function getproject($projID) {
+        $sql=<<<SQL
+SELECT *from $this->tableName
+WHERE ProjID=?
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($projID));
+        if ($statement->rowCount() === 0) {
+            return false;
+        }
+        return new Project($statement->fetch(PDO::FETCH_ASSOC));
+
+    }
+
+    public function deleteproject($projID) {
+        $sql=<<<SQL
+DELETE from $this->tableName
+WHERE ProjID=?
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($projID));
+        if ($statement->execute(array($projID))) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
 
 }

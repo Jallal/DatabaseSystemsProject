@@ -62,4 +62,33 @@ SQL;
 
         return false;
     }
+
+
+
+    public function allProjectColaborators($projID) {
+        $sql=<<<SQL
+SELECT *from $this->tableName
+WHERE ProjID=? and status='true' and ProjID <>OwnerID
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($projID));
+        if ($statement->rowCount() === 0) {
+            return false;
+        }
+        $invites = $statement->fetchAll();
+
+
+        $result = array();  // Empty initial array
+        foreach ($invites as $row) {
+            $result[] = new  Invitation($row);
+        }
+
+
+        return $result;
+    }
+
+
+
 }

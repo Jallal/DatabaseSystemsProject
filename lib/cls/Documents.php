@@ -19,7 +19,28 @@ class Documents extends Table {
     }
 
 
+    public function AllProjectDocuments($Projid) {
+        $sql=<<<SQL
+SELECT * from $this->tableName
+WHERE ProjID=?
+SQL;
 
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($Projid));
+        if ($statement->rowCount() === 0) {
+            return false;
+        }
+        $countries = $statement->fetchAll();
+
+        $result = array();  // Empty initial array
+        foreach ($countries as $row) {
+            $result[] = new  Document($row);
+        }
+
+
+        return $result;
+    }
 
     public function AllUserDocuments($userid) {
         $sql=<<<SQL
@@ -130,7 +151,7 @@ SQL;
 
         $result = array();
         foreach($statement as $row) {
-            $result[] = new Document($row);
+            $result[] = new  Document($row);
         }
 
         return $result;

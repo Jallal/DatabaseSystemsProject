@@ -4,25 +4,33 @@
 class SightsController {
     private $site;
     private $user;
-    private $page;
+    private $page = "index.php";
     private $lastInserted;
     private $AddFriend;
     private $friendship;
+    private $projects;
 
     public function __construct(Site $site, User $user, $request) {
         $this->friendship = new  Friendship($site);
+        $this->projects = new  Projects($site);
         $this->page = $site->getRoot();
         $this->site = $site;
         $this->user = $user;
+
+
+        if (isset($_POST['title'])) {
+            $this->addNewProject($_POST['title']);
+        }
+        if (isset($_REQUEST['delete'])) {
+            $this->deleteProject($_REQUEST['delete']);
+        }
+
         if (isset($request['accept'])) {
             $this->AcceptFriend($request['accept']);
         }
         if (isset($request['delete'])) {
             $this->DeleteFriend($request['delete']);
         }
-
-
-
 
         if (isset($request['AddFriend'])) {
             $this->AddFriend($request['AddFriend']);
@@ -59,5 +67,16 @@ class SightsController {
 
     public function didDeleteWork() {
         return $this->AddFriend;
+    }
+    public function addNewProject($title) {
+        $this->projects->addAProject( $this->user->getUserid(),$title);
+        $this->page = $this->site->getRoot();
+        return  $this->page;
+    }
+    public function deleteProject($delete){
+        $this->projects->deleteproject($delete);
+        $this->page = $this->site->getRoot();
+        return  $this->page;
+
     }
 }

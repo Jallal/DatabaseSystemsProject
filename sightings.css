@@ -186,6 +186,11 @@ h2 {
 .sighting a {
     text-decoration: none;
 }
+
+
+
+
+
 .comments {
     font-size: 0.9em;
     margin-left: 1em;
@@ -325,6 +330,34 @@ footer p {
 
 
 
+.docs {
+    list-style:none;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
+    padding:10px 0;
+    display:inline;
+    text-transform:uppercase;
+    padding:1px 10px;
 
 
+
+}
+div.text input,
+div.text textarea {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 0.4em 0.5em 0.4em 0.5em;
+    display: block;
+    font-size: 100%;
+}
+
+input:active,
+input:focus,
+input:hover,
+textarea:active,
+textarea:focus,
+textarea:hover {
+    background-color: lightyellow;
+    border-color: yellow;
+}
 

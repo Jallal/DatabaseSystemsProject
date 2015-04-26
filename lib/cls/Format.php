@@ -40,7 +40,7 @@ class Format {
 <nav>
 	<ul>
 		<li><a href="index.php">Home</a></li>
-		<li><a href="#">New Project</a></li>
+		<li><a href="new-project.php">New Project</a></li>
 		<li><a href="post/logout-post.php">Logout</a></li>
 	<li><form name="search" action="post/search-post.php" method="post">
 		<input class = "search" type="text"  name="title"  value=" ">

@@ -10,7 +10,7 @@ class Project {
     private $id;             ///< ID for this sight in the sight table
     private $name;           ///< name for the person sighted in the sight table
     private $ownerid;         ///< id of the person sighted
-
+    private $time;
     /**
      * Constructor
      * @param $row Row from the sight table in the database
@@ -19,6 +19,7 @@ class Project {
         $this->id = $row['ProjID'];
         $this->name = $row['title'];
         $this->ownerid = $row['OwnerID'];
+        $this->time = $row['time'];
 
     }
 
@@ -42,5 +43,9 @@ class Project {
         return  $this->ownerid;
     }
 
+    public function getCreated()
+    {
+        $this->time;
+    }
 
 }

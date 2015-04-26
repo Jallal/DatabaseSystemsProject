@@ -7,29 +7,29 @@
  */
 
 class Comment {
-    private $id;             ///< ID for this sight in the sight table
+    private $commenterid;             ///< ID for this sight in the sight table
     private $docid;           ///< name for the person sighted in the sight table
     private $message;    ///< description of the sighting
     private $timestamp;        ///< date and time of the sighting
-    private $filename;         ///< id of the person sighted
+        ///< id of the person sighted
     /**
      * Constructor
      * @param $row Row from the sight table in the database
      */
     public function __construct($row) {
-        $this->id = $row['id'];
-        $this->docid = $row['docid'];
-        $this->message = $row['message'];
-        $this->timestamp = strtotime($row['timestamp']);
+        $this->commenterid = $row['CommenterID'];
+        $this->docid = $row['DocID'];
+        $this->message = $row['Message'];
+        $this->timestamp = strtotime($row['Timestamp']);
 
     }
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getcommenterId()
     {
-        return $this->id;
+        return $this->commenterid;
     }
 
     /**
