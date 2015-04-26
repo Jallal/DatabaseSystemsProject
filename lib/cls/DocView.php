@@ -1,16 +1,17 @@
 <?php
 /**
- * Class UserView View class for a user
+ * Created by PhpStorm.
+ * User: elhazzat
+ * Date: 4/26/15
+ * Time: 2:28 PM
  */
 
-class ProjectView
-{
+class DocView {
     private $user;
     private $project;
     private $projDocs;
-    private $Allcolabproj;
+    private $AllDocCom;
     private $comments;
-    private $projColab;
 
     public function __construct(Site $site, User $user = null, $request)
     {
@@ -22,7 +23,6 @@ class ProjectView
         $documents = new  Documents($site);
         $this->comments = new Comments($site);
         $projects = new   Projects($site);
-        $invitations = new Invitations($site);
         if (isset($request['i'])) {
 
             $this->project = $projects->getproject($request['i']);
@@ -31,8 +31,6 @@ class ProjectView
             $this->UseInterests = $Interests->UserInterests($this->user->getUserid());
             $this->ProjsCount = $projects->ProjectsCount($this->user->getUserid());
             $this->DocsCount = $documents->DocumentsCount($this->user->getUserid());
-
-
 
 
         }
@@ -44,19 +42,19 @@ class ProjectView
 
     public function ShowProject(){
 
-            $html = <<<HTML
+        $html = <<<HTML
 
 HTML;
-                $title = $this->project->getName();
-                $id = $this->project->getId();
-                $ownerid = $this->project->getOwnerId();
-                $userid = $this->user->getUserid();
-                $time = date('Y-m-d G:ia' ,$this->project->getCreated());
-                $delete = $this->deleteProjrct($userid, $ownerid, $id );
-                $html .= ' <div class="sighting">';
-                $html .= '<div>' . $delete . '</div>';
-                $html .= '<h2><a href="#">' . $title. '</a></h2>';
-                $html .= '<p class="time"> ' . $time . ' </p>';
+        $title = $this->project->getName();
+        $id = $this->project->getId();
+        $ownerid = $this->project->getOwnerId();
+        $userid = $this->user->getUserid();
+        $time = date('Y-m-d G:ia' ,$this->project->getCreated());
+        $delete = $this->deleteProjrct($userid, $ownerid, $id );
+        $html .= ' <div class="sighting">';
+        $html .= '<div>' . $delete . '</div>';
+        $html .= '<h2><a href="#">' . $title. '</a></h2>';
+        $html .= '<p class="time"> ' . $time . ' </p>';
         if(!(empty($this->projDocs))) {
 
             foreach ($this->projDocs as $key => $value) {
@@ -70,6 +68,20 @@ HTML;
                 $html .= '<p><strong>Document</strong> :&nbsp ' .  $Docname . '&nbsp &nbsp <strong>Veriosn &nbsp:</strong>&nbsp '.   $version . '&nbsp &nbsp<strong>Created by : &nbsp</strong>'.   $cretedby .''.'</p>';
                 $html .= '<p class="time"> ' . $doctime . ' </p>';
                 $html .= '</div>';
+                $html.='<p>'.$this->getCoomentForDoc($DocID).'</p>';
+                $html .= '<form   name="comment" action="post/comment-post.php" method="post">';
+
+                $html .= '<div class="text">';
+                $html .= '<textarea rows="5" cols="50" name="comment" id="comment"></textarea>';
+                $html .= '</div>';
+                $html .= '<br>';
+                $html .= '<input class ="addcomment" type="hidden" name="docID"  value=' . $DocID . '>';
+                $html .= '<input class ="addcomment" type="hidden" name="projectID"  value=' . $id . '>';
+                $html .= '<br>';
+                $html .= '<input class ="addcomment" type="submit"  name ="add_comment" value="Write a Comment">';
+                $html .= '</div>';
+                $html .= '</form>';
+
 
             }
 
@@ -77,10 +89,12 @@ HTML;
         $html .= '</div>';
 
 
-            return $html;
+        return $html;
 
 
     }
+
+
 
 
     public function getuserName()
@@ -104,6 +118,30 @@ HTML;
         return $this->freindsCount;
     }
 
+
+
+
+
+
+    public function getCoomentForDoc($DocID){
+        $this->AllDocCom = $this->comments->getCommentsbyDOCid($DocID);
+
+        if(!empty($this->AllDocCom)) {
+
+            $html = <<<HTML
+
+HTML;
+            foreach($this->AllDocCom as $key => $value) {
+                $html .= ' <div class=" comments">';
+                $html .= '<p><strong>' . $value->getcommenterId() . '</strong>:&nbsp&nbsp &nbsp' . $value->getmessage() . '</p>';
+                $html .= '</div>';
+
+            }
+        }
+        return $html;
+
+    }
+
     public function deleteProjrct($userid, $ownerid,$projID){
         $html = <<<HTML
 HTML;
@@ -116,4 +154,7 @@ HTML;
 
         return $html;
     }
+
+
+
 }

@@ -35,6 +35,31 @@ SQL;
         return $result;
     }
 
+    public function acceptRequest($projid, $userid) {
+        $sql = <<<SQL
+UPDATE $this->tableName
+SET status='true'
+WHERE ProjID=? and collaboratorID=?
+SQL;
+
+        $statement = $this->pdo()->prepare($sql);
+        $statement->execute(array($projid, $userid));
+    }
+
+
+
+    public function RemoveRequest($projid, $userid){
+
+        $sql=<<<SQL
+DELETE FROM $this->tableName
+WHERE (ProjID=? AND collaboratorID=?)
+SQL;
+
+        $statement = $this->pdo()->prepare($sql);
+        $statement->execute(array($projid, $userid));
+
+    }
+
     public function isCollaborator($userid, $collab) {
         $sql = <<<SQL
 SELECT *
@@ -68,12 +93,34 @@ SQL;
     public function allProjectColaborators($projID) {
         $sql=<<<SQL
 SELECT *from $this->tableName
-WHERE ProjID=? and status='true' and ProjID <>OwnerID
+WHERE ProjID=? and status='true' and collaboratorID<>OwnerID
 SQL;
 
         $pdo = $this->pdo();
         $statement = $pdo->prepare($sql);
         $statement->execute(array($projID));
+        if ($statement->rowCount() === 0) {
+            return false;
+        }
+        $invites = $statement->fetchAll();
+        $result = array();  // Empty initial array
+        foreach ($invites as $row) {
+            $result[] = new  Invitation($row);
+        }
+
+
+        return $result;
+    }
+
+    public function myProjColaborations($userid) {
+        $sql=<<<SQL
+SELECT *from $this->tableName
+WHERE collaboratorID=? and status='true' and ProjID <>OwnerID
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($userid));
         if ($statement->rowCount() === 0) {
             return false;
         }

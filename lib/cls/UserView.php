@@ -8,6 +8,7 @@ class UserView
     private $user;
     private $userSights;
     private $userPendingFriends;
+    private $userPendingProjects;
     private $CurrentFriends;
     private $UseInterests;
     private $redirect = false;
@@ -19,6 +20,9 @@ class UserView
     private $site;
     private $viewingUser;
     private $invitations;
+    private $projColab;
+    private $Allcolabproj;
+    private  $myinvitations;
 
     public function __construct(Site $site, User $user = null, $request)
     {
@@ -28,7 +32,8 @@ class UserView
         $Interests = new  Interests($site);
         $documents = new  Documents($site);
         $projects = new   Projects($site);
-        $this->invitations = new Invitations($site);
+        $invitations = new Invitations($site);
+        $this->myinvitations = new Invitations($site);;
         if (isset($request['i'])) {
             $users = new Users($site);
             $this->user = $users->get($request['i']);
@@ -40,6 +45,17 @@ class UserView
             $this->DocsCount = $documents->DocumentsCount($this->user->getUserid());
             $this->UserProjs = $projects->AllUserProjects($this->user->getUserid());
             $this->UserDocs = $documents->AllUserDocuments($this->user->getUserid());
+            $this->projColab = $invitations->myProjColaborations($this->user->getUserid());
+            $this->userPendingProjects = $invitations->allUserInvitations($this->user->getUserid());
+            $this->projColab = $invitations->myProjColaborations($this->user->getUserid());
+            if(!empty($this->projColab)){
+                $result = array();
+                foreach ($this->projColab as $key => $value) {
+                    $projid = $value->getProjid();
+                    $result[] = $projects->getproject($projid);
+                }
+                $this->Allcolabproj = $result;
+            }
             if ($this->user === null) $this->redirect = true;
         } else {
             $this->user = $user;
@@ -56,6 +72,17 @@ class UserView
             $this->DocsCount = $documents->DocumentsCount($this->user->getUserid());
             $this->UserProjs = $projects->AllUserProjects($this->user->getUserid());
             $this->UserDocs = $documents->AllUserDocuments($this->user->getUserid());
+            $this->userPendingProjects = $invitations->allUserInvitations($this->user->getUserid());
+            $this->projColab = $invitations->myProjColaborations($this->user->getUserid());
+
+            if(!empty($this->projColab)){
+                $result = array();
+                foreach ($this->projColab as $key => $value) {
+                    $projid = $value->getProjid();
+                    $result[] = $projects->getproject($projid);
+                }
+                $this->Allcolabproj = $result;
+            }
 
 
         }
@@ -240,6 +267,52 @@ HTML;
     }
 
 
+
+    public function presentProjectRequests()
+    {
+
+        if (empty($this->userPendingProjects) || ($this->user->getId() !== $this->viewingUser->getId())) {
+            return "";
+        }
+        $html = <<<HTML
+<div class="options">
+		<h2>Project Requests</h2>
+HTML;
+
+        foreach($this->userPendingProjects as $Proj) {
+            $ProjId = $Proj->getProjid();
+            $colabID = $Proj->getCollaboratorid();
+
+            if (strlen($colabID) < 8) {
+                $html .= <<<HTML
+                  <p>$colabID</p>
+                 <div class="farright2"><a href="post/sights-post.php?acProj=$ProjId">Accept</a></div>
+                  <div class="center"><a href="post/sights-post.php?deProj=$ProjId">Decline</a></div>
+HTML;
+
+            } else {
+                $html .= <<<HTML
+                 <p>$colabID</p>
+                 <div class="farright3"><a href="post/sights-post.php?acProj=$ProjId">Accept</a></div>
+                 <a href="post/sights-post.php?deProj=$ProjId">Decline</a>
+
+HTML;
+            }
+
+
+        }
+        $html .= '</div>';
+
+        return $html;
+
+    }
+
+
+
+
+
+
+
     public function presentSuper()
     {
         if ($this->user->getId() !== $this->viewingUser->getId()) {
@@ -327,6 +400,13 @@ HTML;
     public function MainPage()
     {
 
+
+        if(empty($this->UserProjs)){
+            return "";
+
+        }
+
+
         if (sizeof($this->UserProjs) > 0 && (sizeof($this->user) > 0)) {
 
             $html = <<<HTML
@@ -340,7 +420,7 @@ HTML;
                 $ownerid = $value->getOwnerId();
                 $time = date('Y-m-d G:ia' ,$value->getCreated());
                 $delete = $this->deleteProjrct($userid, $ownerid, $id );
-                $colabo = $this->invitations->allProjectColaborators($id);
+                $colabo =  $this->myinvitations->allProjectColaborators($id);
                 $html .= ' <div class="sighting">';
                 $html .= '<div>' . $delete . '</div>';
                 $html .= '<h2><a href="#">' . $title. '</a></h2>';
@@ -362,6 +442,17 @@ HTML;
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -397,6 +488,57 @@ HTML;
 
 
     }
+
+
+
+
+
+
+
+    public function MainProjColab()
+    {
+
+        if(empty($this->Allcolabproj)){
+            return "";
+
+        }
+
+
+        if (sizeof($this->Allcolabproj) > 0 && (sizeof($this->user) > 0)) {
+
+            $html = <<<HTML
+
+HTML;
+
+            foreach($this->Allcolabproj as $key => $value){
+
+                $userid = $this->user->getUserid();
+                $title = $value->getName();
+                $id = $value->getId();
+                $ownerid = $value->getOwnerId();
+                $time = date('Y-m-d G:ia' ,$value->getCreated());
+                $colabo =  $this->myinvitations->allProjectColaborators($id);
+                $html .= ' <div class="sighting">';
+                $html .= '<h2><a href="#">' . $title. '</a></h2>';
+                $html .= '<p class="time"> ' . $time . ' </p>';
+                $html .= '<h4><a href="#">' ."Project Owner :&nbsp &nbsp ".  $ownerid. '</a></h4>';
+
+                if(empty($colabo)){
+                    $html .= '<h4><a href="#">' . "Collaborators :&nbsp &nbsp " .  '&nbsp&nbspNONE' . '</a></h4>';
+                }
+                if(!empty($colabo)){
+                    $colaboratos = $this->colaborators($colabo);
+                    $html .= '<h4><a href="#">' . "Collaborators :&nbsp &nbsp " .  $colaboratos . '</a></h4>';
+
+                }
+
+                $html .= '</div>';
+            }
+            return $html;
+        }
+
+    }
+
 
 
 

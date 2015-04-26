@@ -38,15 +38,15 @@ if ($view->shouldRedirect()) {
 		<br>
 		<?php echo $view->presentCurrentProjects();?>
 		<br>
-		<?php echo $view->presentCurrentDocuments();?>
-
-
+		<?php echo $view->presentProjectRequests();?>
+		<br>
 	</div>
 
 	<!-- Right side items -->
 	<div class="right">
 
 		<?php echo $view->MainPage();?>
+		<?php echo $view->MainProjColab();?>
 
 </div>
 
