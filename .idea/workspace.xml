@@ -2,16 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4782006-f808-4e24-884d-2bf18f9a1544" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/cls/SearchbyInterest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/cls/Format.php" afterPath="$PROJECT_DIR$/lib/cls/Format.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/cls/Interests.php" afterPath="$PROJECT_DIR$/lib/cls/Interests.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/cls/ProjectView.php" afterPath="$PROJECT_DIR$/lib/cls/ProjectView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/cls/Search.php" afterPath="$PROJECT_DIR$/lib/cls/Search.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/cls/SearchView.php" afterPath="$PROJECT_DIR$/lib/cls/SearchView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/cls/UserView.php" afterPath="$PROJECT_DIR$/lib/cls/UserView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/cls/Users.php" afterPath="$PROJECT_DIR$/lib/cls/Users.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/search-post.php" afterPath="$PROJECT_DIR$/post/search-post.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/searchResulte.php" afterPath="$PROJECT_DIR$/searchResulte.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DatabaseSystemsProject.iws" />
@@ -40,7 +30,7 @@
       <file leaf-file-name="Users.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/cls/Users.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-39.625" vertical-offset="3429" max-vertical-offset="4485">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3429" max-vertical-offset="4485">
               <caret line="401" column="0" selection-start-line="401" selection-start-column="0" selection-end-line="401" selection-end-column="0" />
               <folding>
                 <element signature="n#login#0;n#Users#0;n#!!top" expanded="false" />
@@ -64,7 +54,7 @@
       <file leaf-file-name="edituser-post.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/post/edituser-post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.291666" vertical-offset="56" max-vertical-offset="720">
+            <state vertical-scroll-proportion="0.0" vertical-offset="56" max-vertical-offset="720">
               <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="42" selection-end-column="5" />
               <folding />
             </state>
@@ -74,7 +64,7 @@
       <file leaf-file-name="project-post.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/post/project-post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="585">
+            <state vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="585">
               <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="46" />
               <folding />
             </state>
@@ -84,7 +74,7 @@
       <file leaf-file-name="UserView.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/cls/UserView.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125" vertical-offset="2865" max-vertical-offset="4995">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2865" max-vertical-offset="4995">
               <caret line="270" column="0" selection-start-line="270" selection-start-column="0" selection-end-line="307" selection-end-column="5" />
               <folding>
                 <element signature="e#6#53#0#PHP" expanded="true" />
@@ -112,7 +102,7 @@
       <file leaf-file-name="search-post.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/post/search-post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="480">
+            <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="480">
               <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
               <folding />
             </state>
@@ -122,19 +112,9 @@
       <file leaf-file-name="SearchView.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/cls/SearchView.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.416666" vertical-offset="3536" max-vertical-offset="4290">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3536" max-vertical-offset="4290">
               <caret line="283" column="5" selection-start-line="283" selection-start-column="5" selection-end-line="283" selection-end-column="5" />
-              <folding>
-                <marker date="1430094175000" expanded="true" signature="2283:2471" placeholder="..." />
-                <marker date="1430094175000" expanded="true" signature="4788:4807" placeholder="..." />
-                <marker date="1430094175000" expanded="true" signature="4788:5161" placeholder="..." />
-                <marker date="1430094175000" expanded="true" signature="5376:5404" placeholder="..." />
-                <marker date="1430094175000" expanded="true" signature="5376:6194" placeholder="..." />
-                <marker date="1430094175000" expanded="true" signature="6530:6704" placeholder="..." />
-                <marker date="1430094175000" expanded="true" signature="6906:6926" placeholder="..." />
-                <marker date="1430094175000" expanded="true" signature="6906:7171" placeholder="..." />
-                <marker date="1430094175000" expanded="true" signature="7450:7478" placeholder="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -142,7 +122,7 @@
       <file leaf-file-name="searchResulte.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/searchResulte.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38403615" vertical-offset="0" max-vertical-offset="690">
+            <state vertical-scroll-proportion="0.5896226" vertical-offset="5" max-vertical-offset="690">
               <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
               <folding />
             </state>
@@ -152,7 +132,7 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.791667" vertical-offset="236" max-vertical-offset="930">
+            <state vertical-scroll-proportion="0.0" vertical-offset="236" max-vertical-offset="930">
               <caret line="41" column="12" selection-start-line="39" selection-start-column="8" selection-end-line="41" selection-end-column="12" />
               <folding />
             </state>
@@ -162,7 +142,7 @@
       <file leaf-file-name="newuser-post.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/post/newuser-post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.291666" vertical-offset="2" max-vertical-offset="690">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="690">
               <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="33" />
               <folding />
             </state>
@@ -172,7 +152,7 @@
       <file leaf-file-name="login-post.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/post/login-post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.125" vertical-offset="0" max-vertical-offset="420">
+            <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="420">
               <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="59" />
               <folding />
             </state>
@@ -383,15 +363,15 @@
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="71c98801-ce99-4ec4-bc18-c584d806a962" server_name="webdev-cse480">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="71c98801-ce99-4ec4-bc18-c584d806a962" server_name="webdev-cse480">
       <method />
     </configuration>
     <list size="0" />
@@ -411,29 +391,29 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="832" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31748253" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3170391" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5450644" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24881516" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17381974" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5450644" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17596567" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32027972" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -454,9 +434,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21327014" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -573,7 +553,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.125" vertical-offset="0" max-vertical-offset="555">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -588,7 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.375" vertical-offset="807" max-vertical-offset="1470">
           <caret line="85" column="20" selection-start-line="85" selection-start-column="20" selection-end-line="85" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -596,7 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="23.0" vertical-offset="2772" max-vertical-offset="3435">
           <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -604,7 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.125" vertical-offset="45" max-vertical-offset="780">
           <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -615,19 +591,6 @@
           <folding>
             <element signature="n#AllProjectDocuments#0;n#Documents#0;n#!!top" expanded="false" />
             <element signature="n#deleteDoc#0;n#Documents#0;n#!!top" expanded="false" />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;WHERE..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;WHERE..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;where..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;where..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;where..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;where..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="DELETE from ..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;where..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="DELETE from ..." />
-            <marker date="1430066022000" expanded="true" signature="-1:-1" placeholder="UPDATE :_thi..." />
           </folding>
         </state>
       </provider>
@@ -636,12 +599,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="6.125" vertical-offset="612" max-vertical-offset="1635">
           <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-          <folding>
-            <marker date="1430067525000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO.._this_tableName&#10;where..." />
-            <marker date="1430067525000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO.._this_tableName&#10;where..." />
-            <marker date="1430067525000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1430067525000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -649,7 +607,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1758" max-vertical-offset="2445">
           <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -657,7 +614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="5535">
           <caret line="133" column="1" selection-start-line="133" selection-start-column="1" selection-end-line="133" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,7 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.875" vertical-offset="1749" max-vertical-offset="2400">
           <caret line="155" column="5" selection-start-line="155" selection-start-column="5" selection-end-line="155" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -673,7 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.166666" vertical-offset="77" max-vertical-offset="765">
           <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -681,16 +635,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.25" vertical-offset="294" max-vertical-offset="2415">
           <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="43" selection-end-column="1" />
-          <folding>
-            <marker date="1429376642000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1429376642000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1429376642000" expanded="true" signature="-1:-1" placeholder="UPDATE :_thi..." />
-            <marker date="1429376642000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;WHERE..." />
-            <marker date="1429376642000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;WHERE..." />
-            <marker date="1429376642000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;WHERE..." />
-            <marker date="1429376642000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;WHERE..." />
-            <marker date="1429376642000" expanded="true" signature="-1:-1" placeholder="SELECT count..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -706,7 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.0" vertical-offset="1254" max-vertical-offset="1905">
           <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,7 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.625" vertical-offset="30" max-vertical-offset="825">
           <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -724,13 +667,6 @@
           <caret line="92" column="20" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="42" />
           <folding>
             <element signature="n#allUserInvitations#0;n#Invitations#0;n#!!top" expanded="false" />
-            <marker date="1430083422000" expanded="true" signature="-1:-1" placeholder="SELECT *from.._this_tableName&#10;WHERE..." />
-            <marker date="1430083422000" expanded="true" signature="-1:-1" placeholder="UPDATE :_thi..." />
-            <marker date="1430083422000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1430083422000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;WHERE..." />
-            <marker date="1430083422000" expanded="true" signature="-1:-1" placeholder="SELECT a.* f.._this_tableName a..." />
-            <marker date="1430083422000" expanded="true" signature="-1:-1" placeholder="SELECT *from.._this_tableName&#10;WHERE..." />
-            <marker date="1430083422000" expanded="true" signature="-1:-1" placeholder="SELECT *from.._this_tableName&#10;WHERE..." />
           </folding>
         </state>
       </provider>
@@ -749,7 +685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="615">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -757,12 +692,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.666666" vertical-offset="956" max-vertical-offset="1620">
           <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding>
-            <marker date="1430088846000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1430088846000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;where..." />
-            <marker date="1430088846000" expanded="true" signature="-1:-1" placeholder="UPDATE :_thi..." />
-            <marker date="1430088846000" expanded="true" signature="-1:-1" placeholder="SELECT * fro.._this_tableName&#10;where..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -778,10 +708,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.4166666" vertical-offset="911" max-vertical-offset="1575">
           <caret line="63" column="51" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
-          <folding>
-            <marker date="1426886849000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1426886849000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -789,21 +716,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.541667" vertical-offset="347" max-vertical-offset="1035">
           <caret line="45" column="51" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="57" />
-          <folding>
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1430090339000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -811,7 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.833333" vertical-offset="58" max-vertical-offset="1455">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="30" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -827,7 +739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="480">
           <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -865,7 +776,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/post/login-post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.125" vertical-offset="0" max-vertical-offset="420">
+        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="420">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="59" />
           <folding />
         </state>
@@ -873,7 +784,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/post/edituser-post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.291666" vertical-offset="56" max-vertical-offset="720">
+        <state vertical-scroll-proportion="0.0" vertical-offset="56" max-vertical-offset="720">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="42" selection-end-column="5" />
           <folding />
         </state>
@@ -881,7 +792,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/post/project-post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="585">
+        <state vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="585">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="46" />
           <folding />
         </state>
@@ -889,7 +800,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/post/newuser-post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.291666" vertical-offset="2" max-vertical-offset="690">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="690">
           <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="33" />
           <folding />
         </state>
@@ -897,7 +808,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/post/search-post.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="480">
+        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="480">
           <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding />
         </state>
@@ -905,7 +816,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/cls/Users.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-39.625" vertical-offset="3429" max-vertical-offset="4485">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3429" max-vertical-offset="4485">
           <caret line="401" column="0" selection-start-line="401" selection-start-column="0" selection-end-line="401" selection-end-column="0" />
           <folding>
             <element signature="n#login#0;n#Users#0;n#!!top" expanded="false" />
@@ -927,7 +838,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/cls/UserView.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125" vertical-offset="2865" max-vertical-offset="4995">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2865" max-vertical-offset="4995">
           <caret line="270" column="0" selection-start-line="270" selection-start-column="0" selection-end-line="307" selection-end-column="5" />
           <folding>
             <element signature="e#6#53#0#PHP" expanded="true" />
@@ -953,7 +864,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.791667" vertical-offset="236" max-vertical-offset="930">
+        <state vertical-scroll-proportion="0.0" vertical-offset="236" max-vertical-offset="930">
           <caret line="41" column="12" selection-start-line="39" selection-start-column="8" selection-end-line="41" selection-end-column="12" />
           <folding />
         </state>
@@ -961,25 +872,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/cls/SearchView.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.416666" vertical-offset="3536" max-vertical-offset="4290">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3536" max-vertical-offset="4290">
           <caret line="283" column="5" selection-start-line="283" selection-start-column="5" selection-end-line="283" selection-end-column="5" />
-          <folding>
-            <marker date="1430094175000" expanded="true" signature="2283:2471" placeholder="..." />
-            <marker date="1430094175000" expanded="true" signature="4788:4807" placeholder="..." />
-            <marker date="1430094175000" expanded="true" signature="4788:5161" placeholder="..." />
-            <marker date="1430094175000" expanded="true" signature="5376:5404" placeholder="..." />
-            <marker date="1430094175000" expanded="true" signature="5376:6194" placeholder="..." />
-            <marker date="1430094175000" expanded="true" signature="6530:6704" placeholder="..." />
-            <marker date="1430094175000" expanded="true" signature="6906:6926" placeholder="..." />
-            <marker date="1430094175000" expanded="true" signature="6906:7171" placeholder="..." />
-            <marker date="1430094175000" expanded="true" signature="7450:7478" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/searchResulte.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38403615" vertical-offset="0" max-vertical-offset="690">
+        <state vertical-scroll-proportion="0.5896226" vertical-offset="5" max-vertical-offset="690">
           <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding />
         </state>
