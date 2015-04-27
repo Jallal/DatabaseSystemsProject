@@ -15,6 +15,7 @@ class Search {
 
 
 
+
     public function __construct($row) {
         $this->id = $row['id'];
         $this->name = $row['name'];

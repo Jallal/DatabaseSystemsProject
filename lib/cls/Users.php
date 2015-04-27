@@ -68,6 +68,26 @@ SQL;
             return new User($statement->fetch(PDO::FETCH_ASSOC));
         }
 
+
+
+
+        public function getuserbyUserID($Uid) {
+            $sql =<<<SQL
+    SELECT * from $this->tableName
+    where userid=?
+SQL;
+
+            $pdo = $this->pdo();
+            $statement = $pdo->prepare($sql);
+            $statement->execute(array($Uid));
+            if($statement->rowCount() === 0) {
+                return null;
+            }
+
+            return new User($statement->fetch(PDO::FETCH_ASSOC));
+        }
+
+
         /**
          * Determine if a user exists in the system.
          * @param $user user ID or a email address.
@@ -313,27 +333,71 @@ SQL;
         }
 
 
-        public function searchForAUser($like){
-            $like =  !is_array($like) ? trim(addslashes($like)) : '';
-            $like2 = '%'.$like.'%';
+
+        public function searchbyInterest($like){
+            $like = !is_array($like) ? trim(addslashes($like)) : '';
+            $like2 = '%' . $like . '%';
 
             $sql =<<<SQL
 
-    SELECT * FROM $this->tableName WHERE name LIKE  ? or userid Like ? or email Like ?
-     group by name;
+    SELECT * FROM User_Interests WHERE interest LIKE  ?
 SQL;
             $pdo = $this->pdo();
             $statement = $pdo->prepare($sql);
-            $statement->execute(array($like2,$like2,$like2));
+            $statement->execute(array($like2));
+            if($statement->rowCount() === 0) {
+                return false;
+            }
             $countries = $statement->fetchAll();
             $result = array();  // Empty initial array
             foreach($countries as $row) {
-                $result[] = new Search($row);
+                $result[] = new SearchbyInterest($row);
             }
+            $results = array();
+            foreach($result as $key=>$value) {
+                $uid = $value->getuserid();
+                $results[] = $this->getuserbyUserID($uid);
 
-
-            return $result;
+            }
+            return $results;
         }
 
+
+
+
+
+        /*public function searchForAUser($like)
+        {
+
+
+            /* $like = !is_array($like) ? trim(addslashes($like)) : '';
+             $like2 = '%' . $like . '%';
+
+
+             var_dump($this->searchbyInterest($like));
+             $this->user->getName()->getID();
+
+             if ($this->searchbyInterest($like)){
+
+                 return $this->searchbyInterest($like);
+             } else {
+                 $sql = <<<SQL
+
+     SELECT * FROM $this->tableName WHERE name LIKE  ? or userid Like ? or email Like ?
+      group by name;
+ SQL;
+                 $pdo = $this->pdo();
+                 $statement = $pdo->prepare($sql);
+                 $statement->execute(array($like2, $like2, $like2));
+                 $countries = $statement->fetchAll();
+                 $result = array();  // Empty initial array
+                 foreach ($countries as $row) {
+                     $result[] = new Search($row);
+                 }
+
+
+                 return $result;
+             }
+         }*/
 
     }

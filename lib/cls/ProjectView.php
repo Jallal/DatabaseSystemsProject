@@ -60,7 +60,6 @@ HTML;
         if(!(empty($this->projDocs))) {
 
             foreach ($this->projDocs as $key => $value) {
-
                 $version = $value->getVersion();
                 $doctime = date('Y-m-d G:ia', $value->getCreateTime());
                 $cretedby = $value->getCreatorid();

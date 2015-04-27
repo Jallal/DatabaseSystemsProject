@@ -374,26 +374,40 @@ HTML;
 
     public function presentCurrentProjects()
     {
+        if(empty($this->Allcolabproj)&&empty($this->UserProjs)){
 
-        if (empty($this->UserProjs)) {
             return "";
         }
+
+
         $html = <<<HTML
 <div class="options">
 		<h2>Projects</h2>
 HTML;
+        if (!empty($this->Allcolabproj)) {
 
-        foreach ($this->UserProjs as $project) {
-            $projectId = $project->getId();
-            $name = $project->getName();
-            $html .= <<<HTML
+            foreach ($this->Allcolabproj as $key2 => $value2) {
+                $projectId = $value2->getId();
+                $name = $value2->getName();
+                $html .= <<<HTML
+           <p><a href="showProject.php?i=$projectId ">$name</a></p>
+HTML;
+            }
+        }
+        if (!empty($this->UserProjs)) {
+
+            foreach ($this->UserProjs as $project) {
+                $projectId = $project->getId();
+                $name = $project->getName();
+                $html .= <<<HTML
 <p><a href="showProject.php?i=$projectId ">$name</a></p>
 HTML;
+            }
+
         }
+
         $html .= '</div>';
         return $html;
-
-
     }
 
 
@@ -423,7 +437,7 @@ HTML;
                 $colabo =  $this->myinvitations->allProjectColaborators($id);
                 $html .= ' <div class="sighting">';
                 $html .= '<div>' . $delete . '</div>';
-                $html .= '<h2><a href="#">' . $title. '</a></h2>';
+                $html .= '<h2><a href="showProject.php?i='.$id.'">' . $title.'</a></h2>';
                 $html .= '<p class="time"> ' . $time . ' </p>';
                 $html .= '<h4><a href="#">' ."Project Owner :&nbsp &nbsp ".  $ownerid. '</a></h4>';
 
@@ -519,7 +533,7 @@ HTML;
                 $time = date('Y-m-d G:ia' ,$value->getCreated());
                 $colabo =  $this->myinvitations->allProjectColaborators($id);
                 $html .= ' <div class="sighting">';
-                $html .= '<h2><a href="#">' . $title. '</a></h2>';
+                $html .= '<h2><a href="showProject.php?i='.$id.'">' . $title.'</a></h2>';
                 $html .= '<p class="time"> ' . $time . ' </p>';
                 $html .= '<h4><a href="#">' ."Project Owner :&nbsp &nbsp ".  $ownerid. '</a></h4>';
 

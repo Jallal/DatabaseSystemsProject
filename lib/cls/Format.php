@@ -43,7 +43,7 @@ class Format {
 		<li><a href="new-project.php">New Project</a></li>
 		<li><a href="post/logout-post.php">Logout</a></li>
 	<li><form name="search" action="post/search-post.php" method="post">
-		<input class = "search" type="text"  name="title"  value=" ">
+		<input class = "search" type="text"  name="findme"  value=" ">
 		<input class = "search" type="submit"  name ="search"   value="Search">
 	</form>
 	</li>

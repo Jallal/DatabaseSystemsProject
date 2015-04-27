@@ -25,7 +25,8 @@ $name = $view->getName();
         <br>
         <?php echo $view->presentCurrentProjects();?>
         <br>
-        <?php echo $view->presentCurrentDocuments();?>
+        <?php echo $view->presentProjectRequests();?>
+        <br>
     </div>
 
     <!-- Right side items -->

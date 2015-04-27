@@ -9,7 +9,7 @@
 class SearchView {
 
     private $user;
-    private $results;
+    private $searchresults;
     private $site;
     private $sights;
     private $freindship;
@@ -18,17 +18,21 @@ class SearchView {
 
     
         public function __construct(Site $site, $user,$request){
-            $result =$_REQUEST['i'];
+
+
             $this->site = $site;
             $this->sights = new Sights($site);
             $Interests = new  Interests($site);
             $documents = new  Documents($site);
             $projects = new   Projects($site);
             $users = new Users($site);
+            if(isset($_REQUEST['i'])){
+                $result =$_REQUEST['i'];
+                $this->searchresults = $users->searchbyInterest($result);
+            }
             $this->freindship = new Friendship($site);
             $this->invitations = new Invitations($site);
             $this->user = $user;
-            $this->results = $users->searchForAUser($result);
             $this->userSights =  $this->sights->getSightsForUser($this->user->getId());
             $this->userPendingFriends =  $this->freindship->getPendingForUser($this->user->getId());
             $this->CurrentFriends  =   $this->freindship->getCurrentFriends($this->user->getId());
@@ -38,6 +42,7 @@ class SearchView {
             $this->DocsCount = $documents->DocumentsCount($this->user->getUserid());
             $this->UserProjs = $projects->AllUserProjects($this->user->getUserid());
             $this->UserDocs = $documents->AllUserDocuments($this->user->getUserid());
+
         }
 
 
@@ -62,16 +67,19 @@ class SearchView {
 
     public function presentSearch() {
 
+
         $currentuserID = $this->user->getId();
         $currentusername = $this->user->getUserid();
 
-        if (sizeof($this->results) > 0 ) {
+
+
+        if (sizeof( $this->searchresults) > 0 ) {
 
 
             $html = <<<HTML
 
 HTML;
-            foreach ($this->results as $key => $value) {
+            foreach ( $this->searchresults as $key => $value) {
                 $id = $value->getId();
                 $userid = $value->getUserid();
 
@@ -125,9 +133,6 @@ HTML;
 
             return $html;
         }
-
-
-
 
 
     public function presentCurrentFriends(){
@@ -213,30 +218,7 @@ HTML;
 HTML;
         return $right;
     }
-    public function presentCurrentDocuments(){
 
-
-        if (empty( $this->UserDocs )) {
-            return "";
-        }
-        $html = <<<HTML
-
- <div class="options">
-		<h2>Documents</h2>
-HTML;
-
-        foreach( $this->UserDocs as $document) {
-            $documentId = $document->getId();
-            $name = $document->getName();
-            $html .= <<<HTML
-<p><a href="#=$documentId">$name</a></p>
-HTML;
-        }
-        $html .= '</div>';
-        return $html;
-
-
-    }
 
     public function presentCurrentProjects(){
 
@@ -262,6 +244,43 @@ HTML;
     }
 
 
+    public function presentProjectRequests()
+    {
 
+        if (empty($this->userPendingProjects) || ($this->user->getId() !== $this->viewingUser->getId())) {
+            return "";
+        }
+        $html = <<<HTML
+<div class="options">
+		<h2>Project Requests</h2>
+HTML;
+
+        foreach($this->userPendingProjects as $Proj) {
+            $ProjId = $Proj->getProjid();
+            $colabID = $Proj->getCollaboratorid();
+
+            if (strlen($colabID) < 8) {
+                $html .= <<<HTML
+                  <p>$colabID</p>
+                 <div class="farright2"><a href="post/sights-post.php?acProj=$ProjId">Accept</a></div>
+                  <div class="center"><a href="post/sights-post.php?deProj=$ProjId">Decline</a></div>
+HTML;
+
+            } else {
+                $html .= <<<HTML
+                 <p>$colabID</p>
+                 <div class="farright3"><a href="post/sights-post.php?acProj=$ProjId">Accept</a></div>
+                 <a href="post/sights-post.php?deProj=$ProjId">Decline</a>
+
+HTML;
+            }
+
+
+        }
+        $html .= '</div>';
+
+        return $html;
+
+    }
 
 }

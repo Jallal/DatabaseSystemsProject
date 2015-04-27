@@ -7,5 +7,26 @@
  */
 
 class SearchbyInterest {
+    private $userid;
+    private $interest;
+
+
+
+    public function __construct($row) {
+        $this->userid = $row['userid'];
+        $this->interest = $row['interest'];
+    }
+
+    public function getuserid()
+    {
+        return $this->userid;
+    }
+
+
+
+    public function getUserInterest()
+    {
+        return $this->interest;
+    }
 
 }

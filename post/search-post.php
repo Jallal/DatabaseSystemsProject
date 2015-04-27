@@ -12,17 +12,16 @@ $nu = new  Users($site);
 
 
 
-if(isset($_POST['title'])){
-
-
+if(isset($_POST['findme'])){
     $users = new Users($site);
     $user= $_SESSION['user'];
     $UID = $user->getId();
-   $search = new SearchView($site,$user,$_POST['title']);
+    $key = strip_tags($_POST['findme']);
+    $string = preg_replace('/\s+/', '',  $key);
+  $search = new SearchView($site,$user,$string);
 }
 
 
 
-
-header("location: ../searchResulte.php?i=".$_POST['title'].'');
+header("location: ../searchResulte.php?i=$string");
 exit;
