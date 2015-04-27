@@ -19,10 +19,26 @@ class Documents extends Table {
     }
 
 
+    public function get($id) {
+        $sql =<<<SQL
+SELECT * from $this->tableName
+where DocID=?
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($id));
+        if($statement->rowCount() === 0) {
+            return null;
+        }
+
+        return new Document($statement->fetch(PDO::FETCH_ASSOC));
+    }
+
     public function AllProjectDocuments($Projid) {
         $sql=<<<SQL
 SELECT * from $this->tableName
-WHERE ProjID=?
+WHERE ProjID=? and versionNo=1
 SQL;
 
         $pdo = $this->pdo();
