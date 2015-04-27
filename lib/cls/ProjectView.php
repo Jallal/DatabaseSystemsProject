@@ -24,17 +24,12 @@ class ProjectView
         $projects = new   Projects($site);
         $invitations = new Invitations($site);
         if (isset($request['i'])) {
-
             $this->project = $projects->getproject($request['i']);
             $this->projDocs = $documents->AllProjectDocuments($request['i']);
             $this->freindsCount = $friendship->CountFriends($this->user->getId());
             $this->UseInterests = $Interests->UserInterests($this->user->getUserid());
             $this->ProjsCount = $projects->ProjectsCount($this->user->getUserid());
             $this->DocsCount = $documents->DocumentsCount($this->user->getUserid());
-
-
-
-
         }
 
 
@@ -53,6 +48,7 @@ HTML;
                 $userid = $this->user->getUserid();
                 $time = date('Y-m-d G:ia' ,$this->project->getCreated());
                 $delete = $this->deleteProjrct($userid, $ownerid, $id );
+                 $invitation = $this-> invitationsPossible($userid, $ownerid,$id);
                 $html .= ' <div class="sighting">';
                 $html .= '<div>' . $delete . '</div>';
                 $html .= '<h2><a href="#">' . $title. '</a></h2>';
@@ -70,16 +66,24 @@ HTML;
                 $html .= '<p class="time"> ' . $doctime . ' </p>';
                 $html .= '</div>';
 
+
+
             }
 
         }
-        $html .= '</div>';
+
+            $html .= '<div>' . $invitation . '</div>';
+            $html .= '</div>';
 
 
             return $html;
 
 
     }
+
+
+
+
 
 
     public function getuserName()
@@ -110,9 +114,30 @@ HTML;
             $html .= '<div class="farright">';
             $html .= '<p><a href="post/project-post.php?delete='.$projID.'">Delete</a></p>';
             $html .= '</div>';
+
         }
 
 
         return $html;
     }
+
+
+
+    public function invitationsPossible($userid, $ownerid,$projID){
+        $html = <<<HTML
+HTML;
+        if($userid===$ownerid){
+            $html .='<form name="search" action="post/search-post.php" method="post">';
+            $html .='<input class = "search" type="text"  name="invite"  value="Invite to project">';
+            $html .='<input class ="search"  type="hidden" name="projectID"  value="'.$projID.'>';
+            $html .='<input class = "search" type="submit"  name ="search"   value="Search">';
+            $html .= '</form>';
+
+        }
+
+
+        return $html;
+    }
+
+
 }

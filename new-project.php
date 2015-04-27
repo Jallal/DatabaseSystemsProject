@@ -6,7 +6,7 @@ $view = new UserView($site, $user, $_REQUEST);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Sight</title>
+    <title>New Project</title>
     <link rel="stylesheet" type="text/css" href="sightings.css" media="screen" />
 </head>
 <?php echo Format::header($view->getName(),0,0,$view->FriendsCount()); ?>
