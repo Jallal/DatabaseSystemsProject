@@ -67,7 +67,7 @@ HTML;
                 $Docname = $value->getName();
                 $DocID= $value->getId();
                 $html .= ' <div class="docs">';
-                $html .= '<p><strong>Document</strong> :&nbsp ' .  $Docname . '&nbsp &nbsp <strong>Veriosn &nbsp:</strong>&nbsp '.   $version . '&nbsp &nbsp<strong>Created by : &nbsp</strong>'.   $cretedby .''.'</p>';
+                $html .= '<p><strong>Document:</strong> &nbsp <a href="document.php?name=' . $Docname . '&projid=' . $id . '">' . $Docname . '</a>&nbsp &nbsp <strong>Created by: &nbsp</strong>'.   $cretedby .''.'</p>';
                 $html .= '<p class="time"> ' . $doctime . ' </p>';
                 $html .= '</div>';
 
