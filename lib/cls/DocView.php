@@ -10,12 +10,14 @@ class DocView {
     private $user;
     private $site;
     private $docName;
+    private $projid;
     private $docTree = array();
 
     public function __construct(Site $site, User $user = null, $request)
     {
         $this->site = $site;
         $this->user = $user;
+        $this->projid = $request['projid'];
         $this->docName = $request['name'];
         if (isset($request['name']) && isset($request['projid'])) {
             $documents = new Documents($this->site);
@@ -28,7 +30,7 @@ class DocView {
         $documents = new Documents($this->site);
         if (!empty($this->docTree)) {
             for ($i = 0; $i < count($this->docTree); $i++) {
-                $html = "<p>";
+                $html = "<div class='sighting'><p>";
                 $doc = $this->docTree[$i];
                 $id = $doc->getId();
                 $versionNo = $doc->getVersion();
@@ -55,10 +57,14 @@ HTML;
 <a href="doc-post.php?delete=$id">Delete</a>
 HTML;
                 }
-                $html .= "</p>";
+                $html .= "</p></div>";
             }
         }
         return $html;
+    }
+
+    public function getProjid() {
+        return $this->projid;
     }
 
     public function getDocName() {
