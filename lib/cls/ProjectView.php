@@ -134,10 +134,9 @@ HTML;
             <input class = "search" type="submit"  name ="search"   value="Search">
           </form>
 HTML;
+            return  $html;
         }
 
-
-        return $html;
     }
 
 
