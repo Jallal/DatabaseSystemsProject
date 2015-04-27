@@ -14,12 +14,21 @@ class SightsController
 
     public function __construct(Site $site, User $user, $request)
     {
+
         $this->friendship = new  Friendship($site);
         $this->projects = new  Projects($site);
         $this->invitations = new  Invitations($site);
         $this->page = $site->getRoot();
         $this->site = $site;
         $this->user = $user;
+
+
+        if (isset($_REQUEST['invite'])&&isset($_REQUEST['projid'])) {
+            $inviteeid=$_REQUEST['invite'];
+            $projid=$_REQUEST['projid'];
+            $ownerid = $this->user->getUserid();
+            $this->addToProject($ownerid,$inviteeid,$projid);
+        }
 
         if (isset($_POST['title'])) {
             $this->addNewProject($_POST['title']);
@@ -115,6 +124,13 @@ class SightsController
     public function DeleteProjRequest($projID)
     {
         $this->invitations->RemoveRequest($projID,$this->user->getUserid());
+        $this->page = $this->site->getRoot();
+        return $this->page;
+    }
+
+
+    public function addToProject($ownerid,$inviteeid,$projid){
+        $this->invitations->addUserToMyProj($ownerid,$inviteeid,(int)$projid,'pending');
         $this->page = $this->site->getRoot();
         return $this->page;
     }

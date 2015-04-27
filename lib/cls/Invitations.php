@@ -136,6 +136,19 @@ SQL;
         return $result;
     }
 
+    public function addUserToMyProj($ownerid,$inviteeid,$projid,$stat) {
 
+        $sql=<<<SQL
+INSERT INTO $this->tableName(ProjID,OwnerID,collaboratorID,status)  values(?,?,?,?)
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        if($statement->execute(array($projid,$ownerid,$inviteeid,$stat))) {
+            return true;
+        }
+
+        return false;
+    }
 
 }

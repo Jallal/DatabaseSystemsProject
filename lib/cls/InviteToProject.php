@@ -14,18 +14,27 @@ class InviteToProject {
     private $freindship;
     private $invitations;
     private  $freindsCount;
+    private  $rojectID;
+    private $page;
 
 
     public function __construct(Site $site, $user,$request){
+
+
+
         $this->site = $site;
         $this->sights = new Sights($site);
         $Interests = new  Interests($site);
         $documents = new  Documents($site);
         $projects = new   Projects($site);
         $users = new Users($site);
-        if(isset($_REQUEST['invite'])){
+        if(isset($_REQUEST['invite'])&&isset($_REQUEST['projectID'])){
             $result =$_REQUEST['invite'];
+            $this->rojectID =$_REQUEST['projectID'];
             $this->searchresults = $users->searchForAUser($result);
+
+
+
         }
         $this->freindship = new Friendship($site);
         $this->invitations = new Invitations($site);
@@ -70,6 +79,8 @@ class InviteToProject {
 
 
 
+
+
         if (sizeof( $this->searchresults) > 0 ) {
 
 
@@ -85,24 +96,26 @@ HTML;
 
                         $Invitee = $this->InviteToProj($value);
                         $html .= '<h2>' . $userid . '</h2>';
-                        $html .= '</div>';
+                        $html .= '<div>' . $Invitee  . '</div>';
+
 
 
 
             }
-
+            $html .= '</div>';
             return $html;
         }
     }
 
     public function InviteToProj($currentUser){
-        $userId = $currentUser->getId();
+        $userId = $currentUser->getUserid();
+        $proj =$this->rojectID;
 
         $html = <<<HTML
+         <div class="farright">
+        <p><a href="post/sights-post.php?invite=$userId&projid=$proj">Invite to Project </a></p>
 HTML;
-        $html .= '<div class="farright">';
-        $html .= '<p><a href="post/sights-post.php?invite=' .$userId. '">Invite to Project </a></p>';
-        $html .= '</div>';
+
 
         return $html;
     }

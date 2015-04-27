@@ -5,10 +5,6 @@ require_once "../lib/site.inc.php";
 <?php
 
 
-var_dump($_POST['invite']);
-var_dump($_POST['projectID']);
-$this->user->getID()->getName()->getB();
-
 unset($_SESSION['lostpassword-error']);
 
 
@@ -35,12 +31,12 @@ if(isset($_POST['invite'])&&isset($_POST['projectID'])){
     $projID = strip_tags($_POST['projectID']);
     $proid = preg_replace('/\s+/', '',   $projID);
     $string = preg_replace('/\s+/', '',  $key);
-    $search = new InviteToProject($site,$user,$string&$proid);
-    header("location: ../inviteResults.php?invite=$string&?projectID=$$proid");
+    //$search = new InviteToProject($site,$user,$string&$proid);
+   header("location: ../inviteResults.php?invite=$string&projectID=$proid");
 
 }
 
 
 
-header("location: ../");
-exit;
+//header("location: ../");
+//exit;

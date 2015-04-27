@@ -124,15 +124,16 @@ HTML;
 
 
     public function invitationsPossible($userid, $ownerid,$projID){
-        $html = <<<HTML
-HTML;
-        if($userid===$ownerid){
-            $html .='<form name="search" action="post/search-post.php" method="post">';
-            $html .='<input class = "search" type="text"  name="invite"  value="Invite to project">';
-            $html .='<input class ="search"  type="hidden" name="projectID"  value="'.$projID.'>';
-            $html .='<input class = "search" type="submit"  name ="search"   value="Search">';
-            $html .= '</form>';
 
+
+        if($userid===$ownerid){
+            $html = <<<HTML
+           <form name="search" action="post/search-post.php" method="post">
+            <input class = "search" type="text"  name="invite"  value="Invite to project">
+            <input class ="search"  type="hidden" name="projectID"  value=$projID>
+            <input class = "search" type="submit"  name ="search"   value="Search">
+          </form>
+HTML;
         }
 
 
