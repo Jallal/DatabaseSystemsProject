@@ -33,10 +33,9 @@ $view = new DocView($site, $user, $_REQUEST);
         <br>
         <div class="sighting">
             <h3>Update Document</h3>
-            <form method="post" action="doc-post.php" enctype="multipart/form-data">
+            <form method="post" action="post/doc-post.php" enctype="multipart/form-data">
                 <input type="hidden" name="MAX_FILE_SIZE" value="16000000">
                 <input type="hidden" name="projid" value="<?php echo $view->getProjid(); ?>">
-                <input type="hidden" name="userid" value="<?php echo $view->getUserid(); ?>">
                 <input name="document" type="file" id="document">
                 <input name="upload" type="submit" id="upload" value="Upload">
             </form>

@@ -36,9 +36,21 @@ SQL;
     }
 
     public function AllProjectDocuments($Projid) {
-        $sql=<<<SQL
-SELECT * from $this->tableName
-WHERE ProjID=? and versionNo=1
+        $sql = <<<SQL
+SELECT
+    d.*
+FROM
+        $this->tableName d
+    INNER JOIN
+        ( SELECT
+              Filename, MAX(versionNo) AS latest
+          FROM
+              $this->tableName
+          GROUP BY
+              Filename
+        ) AS groupedp
+      ON  groupedp.Filename = d.Filename
+      AND groupedp.latest = d.versionNo;
 SQL;
 
         $pdo = $this->pdo();
@@ -51,7 +63,7 @@ SQL;
 
         $result = array();  // Empty initial array
         foreach ($countries as $row) {
-            $result[] = new  Document($row);
+            $result[] = new Document($row);
         }
 
 
@@ -101,7 +113,7 @@ SQL;
         return  $count;
     }
 
-    public function createDocument($name, $projid, $projownerid, $creatorid, $content) {
+    public function createDocument($name, $projid, $projownerid, $creatorid, $content, $size, $type) {
         $sql = <<< SQL
 SELECT * from $this->tableName
 where ProjID=? and Filename=?
@@ -114,15 +126,16 @@ SQL;
         }
 
         $sql = <<< SQL
-INSERT INTO $this->tableName (ProjID, ProjOwnerID, creatorID, Filename, versionNo, create_time, content)
-values (?, ?, ?, ?, ?, ?)
+INSERT INTO $this->tableName (ProjID, ProjOwnerID, creatorID, Filename, versionNo, create_time, content, size, type)
+values (?, ?, ?, ?, ?, ?, ?, ?, ?)
 SQL;
 
         $statement = $this->pdo()->prepare($sql);
-        $statement->execute(array($projid, $projownerid, $creatorid, $name, 1, date("Y-m-d H:i:s"), $content));
+        $statement->execute(array($projid, $projownerid, $creatorid, $name, 1, date("Y-m-d H:i:s"), $content, $size, $type));
+        return true;
     }
 
-    public function updateDocument($name, $projid, $userid, $content) {
+    public function updateDocument($name, $projid, $userid, $content, $size, $type) {
         $sql = <<< SQL
 SELECT * from $this->tableName
 where ProjID=? and Filename=?
@@ -147,17 +160,18 @@ SQL;
         }
 
         $sql = <<<SQL
-INSERT INTO $this->tableName (ProjID, ProjOwnerID, creatorID, Filename, versionNo, create_time, parentDocID, content)
-values (?,?,?,?,?,?,?)
+INSERT INTO $this->tableName (ProjID, ProjOwnerID, creatorID, Filename, versionNo, create_time, parentDocID, content, size, type)
+values (?,?,?,?,?,?,?,?,?,?)
 SQL;
 
         $statement = $this->pdo()->prepare($sql);
-        $statement->execute(array($projid, $projownerid, $userid, $name, $version, date("Y-m-d H:i:s"), $parentid, $content));
+        $statement->execute(array($projid, $projownerid, $userid, $name, $version, date("Y-m-d H:i:s"), $parentid, $content, $size, $type));
+        return true;
     }
 
     public function getDocTree($name, $projid) {
         $sql = <<<SQL
-SELECT * from $this->tableName
+SELECT DocID, Filename, versionNo, creatorID, create_time, parentDocID from $this->tableName
 where ProjID=? and Filename=?
 ORDER BY versionNo DESC
 SQL;
@@ -167,13 +181,13 @@ SQL;
 
         $result = array();
         foreach($statement as $row) {
-            $result[] = new  Document($row);
+            $result[] = new Document($row);
         }
 
         return $result;
     }
 
-    public function deleteDoc($docid) {
+    public function deleteDoc($docid, $userid) {
         // get the document were deleting
         $sql = <<< SQL
 SELECT * from $this->tableName
@@ -186,6 +200,10 @@ SQL;
         $deletedoc = null;
         foreach($statement as $row) {
             $deletedoc = new Document($row);
+        }
+
+        if ($deletedoc->getCreatorid() !== $userid) {
+            return array(false,$deletedoc);
         }
 
         // if its the original document, then delete it and all of its children
@@ -233,6 +251,7 @@ SQL;
 
             $statement = $this->pdo()->prepare($sql);
             $statement->execute(array($deletedoc->getParentdocid(), $updatedoc->getId()));
+            return array(true, $deletedoc);
         }
     }
 }

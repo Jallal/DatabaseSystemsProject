@@ -30,7 +30,7 @@ class DocView {
         $documents = new Documents($this->site);
         if (!empty($this->docTree)) {
             for ($i = 0; $i < count($this->docTree); $i++) {
-                $html = "<div class='sighting'><p>";
+                $html .= "<div class='sighting'><p>";
                 $doc = $this->docTree[$i];
                 $id = $doc->getId();
                 $versionNo = $doc->getVersion();
@@ -49,12 +49,12 @@ HTML;
                 }
                 if ($i === 0) {
                     $html .= <<< HTML
-<a href="download.php?i=$id">Download</a> &nbsp;
+<a href="post/download.php?i=$id">Download</a> &nbsp;
 HTML;
                 }
                 if ($doc->getCreatorid() === $this->user->getUserid()) {
                     $html .= <<<HTML
-<a href="doc-post.php?delete=$id">Delete</a>
+<a href="post/doc-post.php?delete=$id">Delete</a>
 HTML;
                 }
                 $html .= "</p></div>";
@@ -69,10 +69,6 @@ HTML;
 
     public function getDocName() {
         return $this->docName;
-    }
-
-    public function getUserid() {
-        return $this->user->getUserid();
     }
 
     public function getuserName()

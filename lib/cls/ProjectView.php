@@ -53,6 +53,19 @@ HTML;
                 $html .= '<div>' . $delete . '</div>';
                 $html .= '<h2><a href="#">' . $title. '</a></h2>';
                 $html .= '<p class="time"> ' . $time . ' </p>';
+
+        $html .= <<< HTML
+<div class="sighting">
+            <h3>Upload New Document</h3>
+            <form method="post" action="post/doc-post.php" enctype="multipart/form-data">
+                <input type="hidden" name="MAX_FILE_SIZE" value="16000000">
+                <input type="hidden" name="projid" value="$id">
+                <input type="hidden" name="projownerid" value="$ownerid">
+                <input name="document" type="file" id="document">
+                <input name="create" type="submit" id="create" value="Upload">
+            </form>
+        </div>
+HTML;
         if(!(empty($this->projDocs))) {
 
             foreach ($this->projDocs as $key => $value) {
@@ -62,7 +75,7 @@ HTML;
                 $Docname = $value->getName();
                 $DocID= $value->getId();
                 $html .= ' <div class="docs">';
-                $html .= '<p><strong>Document:</strong> &nbsp <a href="document.php?name=' . $Docname . '&projid=' . $id . '">' . $Docname . '</a>&nbsp &nbsp <strong>Created by: &nbsp</strong>'.   $cretedby .''.'</p>';
+                $html .= '<p><strong>Document:</strong> &nbsp <a href="document.php?name=' . $Docname . '&projid=' . $id . '">' . $Docname . '</a>&nbsp &nbsp <strong>Version:</strong> &nbsp;' . $version . '&nbsp;&nbsp;<strong>Created by: &nbsp</strong>'.   $cretedby .''.'</p>';
                 $html .= '<p class="time"> ' . $doctime . ' </p>';
                 $html .= '</div>';
 
