@@ -206,9 +206,10 @@ SQL;
             return array(false,$deletedoc);
         }
 
+
         // if its the original document, then delete it and all of its children
-        if ($deletedoc->getId() === 1) {
-            $projid = $deletedoc->getProjid();
+        if (intval($deletedoc->getVersion()) === 1) {
+            $projid = intval($deletedoc->getProjid());
             $name = $deletedoc->getName();
             $sql = <<< SQL
 DELETE from $this->tableName
@@ -217,6 +218,7 @@ SQL;
 
             $statement = $this->pdo()->prepare($sql);
             $statement->execute(array($projid, $name));
+            return array(true, $deletedoc);
         } else {
             // if not, get the deleted document's child
             $projid = $deletedoc->getProjid();
@@ -243,14 +245,16 @@ SQL;
             $statement->execute(array($docid));
 
             // then update the deleted doc's child to point to the deleted doc's parent
-            $sql = <<<SQL
+            if ($updatedoc !== null) {
+                $sql = <<<SQL
 UPDATE $this->tableName
 SET parentDocID=?
 where DocID=?
 SQL;
 
-            $statement = $this->pdo()->prepare($sql);
-            $statement->execute(array($deletedoc->getParentdocid(), $updatedoc->getId()));
+                $statement = $this->pdo()->prepare($sql);
+                $statement->execute(array($deletedoc->getParentdocid(), $updatedoc->getId()));
+            }
             return array(true, $deletedoc);
         }
     }
