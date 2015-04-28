@@ -71,6 +71,10 @@ HTML;
         return $this->docName;
     }
 
+    public function getUserid() {
+        return $this->user->getUserid();
+    }
+
     public function getuserName()
     {
         return $this->user->getName();

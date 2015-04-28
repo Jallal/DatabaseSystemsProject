@@ -36,7 +36,7 @@ $view = new DocView($site, $user, $_REQUEST);
             <form method="post" action="doc-post.php" enctype="multipart/form-data">
                 <input type="hidden" name="MAX_FILE_SIZE" value="16000000">
                 <input type="hidden" name="projid" value="<?php echo $view->getProjid(); ?>">
-                <input type="hidden" name="userid" value="<?php echo $view->getuserName(); ?>">
+                <input type="hidden" name="userid" value="<?php echo $view->getUserid(); ?>">
                 <input name="document" type="file" id="document">
                 <input name="upload" type="submit" id="upload" value="Upload">
             </form>
