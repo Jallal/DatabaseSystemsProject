@@ -20,14 +20,14 @@ class Projects  extends Table {
 
 
     public function addAProject($userid,$title) {
-        $time =  date("Y-m-d H:i:s");
+        $datetime =  date("Y-m-d h:i:s");
         $sql=<<<SQL
-INSERT INTO  $this->tableName(OwnerID,title,time) VALUES(?,?,?)
+INSERT INTO  $this->tableName(OwnerID,title,times) VALUES(?,?,?)
 SQL;
 
         $pdo = $this->pdo();
         $statement = $pdo->prepare($sql);
-        if ($statement->execute(array($userid,$title,$time))) {
+        if ($statement->execute(array($userid,$title,$datetime ))) {
             return true;
         }else{
 

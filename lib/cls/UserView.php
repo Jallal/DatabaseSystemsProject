@@ -507,7 +507,7 @@ HTML;
                 $ownerid = $value->getOwnerId();
                 $owner = $users->getuserbyUserID($ownerid);
                 $ownerNum = $owner->getId();
-                $time = date('Y-m-d g:ia' ,$value->getCreated());
+                $time = $value->getTimeCreated();
                 if ($this->user->getId() === $this->viewingUser->getId()) {
                     $delete = $this->deleteProjrct($userid, $ownerid, $id);
                 }
@@ -618,7 +618,7 @@ HTML;
                 $ownerid = $value->getOwnerId();
                 $owner = $users->getuserbyUserID($ownerid);
                 $ownerNum = $owner->getId();
-                $time = date('Y-m-d G:ia' ,$value->getCreated());
+                $time = $value->getTimeCreated();
                 $colabo =  $this->myinvitations->allProjectColaborators($id);
                 $html .= ' <div class="sighting">';
                 if (!$invitations->isProjMember($viewingUserid, $id)) {
