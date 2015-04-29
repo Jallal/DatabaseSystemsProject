@@ -23,6 +23,7 @@ class UserView
     private $projColab;
     private $Allcolabproj;
     private  $myinvitations;
+    private $userRejectedProjects;
 
     public function __construct(Site $site, User $user = null, $request)
     {
@@ -47,6 +48,7 @@ class UserView
             $this->UserDocs = $documents->AllUserDocuments($this->user->getUserid());
             $this->projColab = $invitations->myProjColaborations($this->user->getUserid());
             $this->userPendingProjects = $invitations->allUserInvitations($this->user->getUserid());
+            $this->userRejectedProjects = $invitations->allUserRejectedInvitation($this->user->getUserid());
             $this->projColab = $invitations->myProjColaborations($this->user->getUserid());
             if(!empty($this->projColab)){
                 $result = array();
@@ -74,6 +76,7 @@ class UserView
             $this->UserDocs = $documents->AllUserDocuments($this->user->getUserid());
             $this->userPendingProjects = $invitations->allUserInvitations($this->user->getUserid());
             $this->projColab = $invitations->myProjColaborations($this->user->getUserid());
+            $this->userRejectedProjects = $invitations->allUserRejectedInvitation($this->user->getUserid());
 
             if(!empty($this->projColab)){
                 $result = array();
@@ -265,6 +268,56 @@ HTML;
 
 
     }
+
+
+
+
+    public function presentRejectedProjectRequests()
+    {
+
+        if (empty($this->userRejectedProjects) || ($this->user->getId() !== $this->viewingUser->getId())) {
+            return "";
+        }
+        $html = <<<HTML
+<div class="options">
+		<h2>Rejected Colaborations</h2>
+HTML;
+
+        foreach($this->userRejectedProjects as $Proj) {
+            $ProjId = $Proj->getProjid();
+            $colabID = $Proj->getCollaboratorid();
+
+            if (strlen($colabID) < 8) {
+                $html .= <<<HTML
+                  <p>$colabID</p>
+                 <div class="farright2"><a href="post/sights-post.php?done=$ProjId">DONE</a></div>
+
+HTML;
+
+            } else {
+                $html .= <<<HTML
+                 <p>$colabID</p>
+                <div class="farright2"><a href="post/sights-post.php?done=$ProjId">DONE</a></div>
+
+HTML;
+            }
+
+
+        }
+        $html .= '</div>';
+
+        return $html;
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 

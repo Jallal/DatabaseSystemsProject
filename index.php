@@ -40,6 +40,9 @@ if ($view->shouldRedirect()) {
 		<br>
 		<?php echo $view->presentProjectRequests();?>
 		<br>
+		<br>
+		<?php echo $view->presentRejectedProjectRequests();?>
+		<br>
 	</div>
 
 	<!-- Right side items -->

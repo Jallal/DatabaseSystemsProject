@@ -35,6 +35,35 @@ SQL;
         return $result;
     }
 
+
+
+    public function allUserRejectedInvitation($userid) {
+        $sql=<<<SQL
+SELECT *from $this->tableName
+WHERE OwnerID=? and status='rejected'
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($userid));
+        if ($statement->rowCount() === 0) {
+            return false;
+        }
+        $invites = $statement->fetchAll();
+
+
+        $result = array();  // Empty initial array
+        foreach ($invites as $row) {
+            $result[] = new  Invitation($row);
+        }
+
+
+        return $result;
+    }
+
+
+
+
     public function acceptRequest($projid, $userid) {
         $sql = <<<SQL
 UPDATE $this->tableName
@@ -48,11 +77,26 @@ SQL;
 
 
 
+
+    public function RejectRequest($projid, $userid){
+
+        $sql = <<<SQL
+UPDATE $this->tableName
+SET status='rejected'
+WHERE ProjID=? and collaboratorID=?
+SQL;
+
+        $statement = $this->pdo()->prepare($sql);
+        $statement->execute(array($projid, $userid));
+
+    }
+
     public function RemoveRequest($projid, $userid){
+        
 
         $sql=<<<SQL
 DELETE FROM $this->tableName
-WHERE (ProjID=? AND collaboratorID=?)
+WHERE (ProjID=? AND OwnerID=?)
 SQL;
 
         $statement = $this->pdo()->prepare($sql);
@@ -111,9 +155,6 @@ SQL;
 
         return $result;
     }
-
-
-
 
 
 

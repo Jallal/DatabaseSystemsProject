@@ -15,6 +15,7 @@ class SightsController
     public function __construct(Site $site, User $user, $request)
     {
 
+
         $this->friendship = new  Friendship($site);
         $this->projects = new  Projects($site);
         $this->invitations = new  Invitations($site);
@@ -28,6 +29,10 @@ class SightsController
             $projid=$_REQUEST['projid'];
             $ownerid = $this->user->getUserid();
             $this->addToProject($ownerid,$inviteeid,$projid);
+        }
+
+        if (isset($_REQUEST['done'])) {
+            $this->RemoveColabRequest($_REQUEST['done']);
         }
 
         if (isset($_POST['title'])) {
@@ -121,10 +126,15 @@ class SightsController
 
     }
 
+public function  RemoveColabRequest($projID){
+    $this->invitations->RemoveRequest($projID,$this->user->getUserid());
+    $this->page = $this->site->getRoot();
+    return $this->page;
 
+}
     public function DeleteProjRequest($projID)
     {
-        $this->invitations->RemoveRequest($projID,$this->user->getUserid());
+        $this->invitations->RejectRequest($projID,$this->user->getUserid());
         $this->page = $this->site->getRoot();
         return $this->page;
     }
