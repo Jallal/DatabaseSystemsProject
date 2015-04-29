@@ -108,7 +108,7 @@ SQL;
         $sql = <<<SQL
 SELECT *
 from $this->tableName
-WHERE (OwnerID=? and collaboratorID=?) OR (OwnerID=? and collaboratorID=?) OR
+WHERE (OwnerID=? and collaboratorID=?) OR (OwnerID=? and collaboratorID=?)
 SQL;
 
         $pdo = $this->pdo();
@@ -212,4 +212,20 @@ SQL;
         return false;
     }
 
+    public function isProjMember($userid, $projid) {
+        $sql = <<<SQL
+SELECT * from $this->tableName
+where ProjID=? and ((OwnerID=? and status='true') or (collaboratorID=? and status='true'))
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($projid, $userid, $userid));
+
+        if ($statement->rowCount() > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }
