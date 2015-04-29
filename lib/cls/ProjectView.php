@@ -46,7 +46,7 @@ HTML;
                 $id = $this->project->getId();
                 $ownerid = $this->project->getOwnerId();
                 $userid = $this->user->getUserid();
-                $created = date('Y-m-d G:ia' ,$this->project->getCreated());
+                $created = $this->project->getTimeCreated();
                 $delete = $this->deleteProjrct($userid, $ownerid, $id );
                  $invitation = $this-> invitationsPossible($userid, $ownerid,$id);
                 $html .= ' <div class="sighting">';
