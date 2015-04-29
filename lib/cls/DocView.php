@@ -48,6 +48,10 @@ HTML;
                 } else {
                     $html .= "<strong>Parent Version: </strong>NONE &nbsp;";
                 }
+                $creator = $doc->getCreatorid();
+                $html .= "<strong>Creator: </strong>$creator &nbsp;";
+                $created = date('Y-m-d g:ia', $doc->getCreateTime());
+                $html .= "<strong>Created: </strong>$created &nbsp;";
                 if ($i === 0) {
                     $html .= <<< HTML
 <a href="post/download.php?i=$id">Download</a> &nbsp;

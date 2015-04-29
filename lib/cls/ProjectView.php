@@ -46,7 +46,7 @@ HTML;
                 $id = $this->project->getId();
                 $ownerid = $this->project->getOwnerId();
                 $userid = $this->user->getUserid();
-                $time = date('Y-m-d G:ia' ,$this->project->getCreated());
+                $time = date('Y-m-d g:ia' ,$this->project->getCreated());
                 $delete = $this->deleteProjrct($userid, $ownerid, $id );
                  $invitation = $this-> invitationsPossible($userid, $ownerid,$id);
                 $html .= ' <div class="sighting">';
@@ -70,7 +70,7 @@ HTML;
 
             foreach ($this->projDocs as $key => $value) {
                 $version = $value->getVersion();
-                $doctime = date('Y-m-d G:ia', $value->getCreateTime());
+                $doctime = date('Y-m-d g:ia', $value->getCreateTime());
                 $cretedby = $value->getCreatorid();
                 $Docname = $value->getName();
                 $DocID= $value->getId();

@@ -219,8 +219,12 @@ HTML;
             $name = $friend->getName();
             $html .= <<<HTML
 <p><a href="profile.php?i=$friendId ">$name</a></p>
+HTML;
+            if ($this->user->getId() === $this->viewingUser->getId()) {
+                $html .= <<<HTML
 <div class="farright2"><a href="post/sights-post.php?delete=$friendId">Remove</a></div>
 HTML;
+            }
         }
         $html .= '</div>';
         return $html;
@@ -479,27 +483,32 @@ HTML;
             $html = <<<HTML
 
 HTML;
+            $users = new Users($this->site);
 
             foreach($this->UserProjs as $key => $value){
                 $userid = $this->user->getUserid();
                 $title = $value->getName();
                 $id = $value->getId();
                 $ownerid = $value->getOwnerId();
-                $time = date('Y-m-d G:ia' ,$value->getCreated());
-                $delete = $this->deleteProjrct($userid, $ownerid, $id );
+                $owner = $users->getuserbyUserID($ownerid);
+                $ownerNum = $owner->getId();
+                $time = date('Y-m-d g:ia' ,$value->getCreated());
+                if ($this->user->getId() === $this->viewingUser->getId()) {
+                    $delete = $this->deleteProjrct($userid, $ownerid, $id);
+                }
                 $colabo =  $this->myinvitations->allProjectColaborators($id);
                 $html .= ' <div class="sighting">';
                 $html .= '<div>' . $delete . '</div>';
                 $html .= '<h2><a href="showProject.php?i='.$id.'">' . $title.'</a></h2>';
                 $html .= '<p class="time"> ' . $time . ' </p>';
-                $html .= '<h4><a href="#">' ."Project Owner :&nbsp &nbsp ".  $ownerid. '</a></h4>';
+                $html .= '<h4>' ."Project Owner :&nbsp &nbsp <a href=\"./?i=$ownerNum\">".  $ownerid. '</a></h4>';
 
                 if(empty($colabo)){
-                    $html .= '<h4><a href="#">' . "Collaborators :&nbsp &nbsp " .  '&nbsp&nbspNONE' . '</a></h4>';
+                    $html .= '<h4>' . "Collaborators :&nbsp &nbsp " .  '&nbsp&nbspNONE' . '</h4>';
                 }
                if(!empty($colabo)){
                    $colaboratos = $this->colaborators($colabo);
-                       $html .= '<h4><a href="#">' . "Collaborators :&nbsp &nbsp " .  $colaboratos . '</a></h4>';
+                       $html .= '<h4>' . "Collaborators :&nbsp &nbsp " .  $colaboratos . '</h4>';
 
                 }
 
@@ -539,15 +548,17 @@ HTML;
 
     public function colaborators($colabo)
     {
+        $users = new Users($this->site);
 
         $html = <<<HTML
 HTML;
         foreach ($colabo as $Interest) {
             $interest = $Interest->getCollaboratorid();
+            $user = $users->getuserbyUserID($interest);
+            $id = $user->getId();
 
             $html .= <<<HTML
-
-             $interest,&nbsp
+<a href="./?i=$id">$interest</a>,&nbsp
 HTML;
         }
 
@@ -577,25 +588,28 @@ HTML;
 
 HTML;
 
+            $users = new Users($this->site);
             foreach($this->Allcolabproj as $key => $value){
 
                 $userid = $this->user->getUserid();
                 $title = $value->getName();
                 $id = $value->getId();
                 $ownerid = $value->getOwnerId();
+                $owner = $users->getuserbyUserID($ownerid);
+                $ownerNum = $owner->getId();
                 $time = date('Y-m-d G:ia' ,$value->getCreated());
                 $colabo =  $this->myinvitations->allProjectColaborators($id);
                 $html .= ' <div class="sighting">';
                 $html .= '<h2><a href="showProject.php?i='.$id.'">' . $title.'</a></h2>';
                 $html .= '<p class="time"> ' . $time . ' </p>';
-                $html .= '<h4><a href="#">' ."Project Owner :&nbsp &nbsp ".  $ownerid. '</a></h4>';
+                $html .= '<h4>' ."Project Owner :&nbsp &nbsp <a href=\"./?i=$ownerNum\">".  $ownerid. '</a></h4>';
 
                 if(empty($colabo)){
-                    $html .= '<h4><a href="#">' . "Collaborators :&nbsp &nbsp " .  '&nbsp&nbspNONE' . '</a></h4>';
+                    $html .= '<h4>' . "Collaborators :&nbsp &nbsp " .  '&nbsp&nbspNONE' . '</h4>';
                 }
                 if(!empty($colabo)){
                     $colaboratos = $this->colaborators($colabo);
-                    $html .= '<h4><a href="#">' . "Collaborators :&nbsp &nbsp " .  $colaboratos . '</a></h4>';
+                    $html .= '<h4>' . "Collaborators :&nbsp &nbsp " .  $colaboratos . '</h4>';
 
                 }
 
