@@ -58,12 +58,8 @@ class SearchView {
 
 
     public function getName() {
-
-
         return  $this->user->getName();
     }
-
-
 
     public function presentSearch() {
 

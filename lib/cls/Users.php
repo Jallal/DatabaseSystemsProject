@@ -1,4 +1,4 @@
-    <?php
+<?php
 
         /**
          * Manage users in our system.

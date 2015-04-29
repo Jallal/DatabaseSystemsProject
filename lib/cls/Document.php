@@ -15,6 +15,9 @@ class Document {
     private $version;
     private $create_time;
     private $parentdocid;
+    private $content;
+    private $size;
+    private $type;
 
     /**
      * Constructor
@@ -29,6 +32,33 @@ class Document {
         $this->version = $row['versionNo'];
         $this->create_time = strtotime($row['create_time']);
         $this->parentdocid = $row['parentDocID'];
+        $this->content = $row['content'];
+        $this->size = $row['size'];
+        $this->type = $row['type'];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**

@@ -9,6 +9,7 @@
 class DocView {
     private $user;
     private $site;
+    private $doc;
     private $docName;
     private $projid;
     private $docTree = array();
@@ -30,7 +31,7 @@ class DocView {
         $documents = new Documents($this->site);
         if (!empty($this->docTree)) {
             for ($i = 0; $i < count($this->docTree); $i++) {
-                $html = "<div class='sighting'><p>";
+                $html .= "<div class='sighting'><p>";
                 $doc = $this->docTree[$i];
                 $id = $doc->getId();
                 $versionNo = $doc->getVersion();
@@ -49,18 +50,60 @@ HTML;
                 }
                 if ($i === 0) {
                     $html .= <<< HTML
-<a href="download.php?i=$id">Download</a> &nbsp;
+<a href="post/download.php?i=$id">Download</a> &nbsp;
 HTML;
                 }
                 if ($doc->getCreatorid() === $this->user->getUserid()) {
                     $html .= <<<HTML
-<a href="doc-post.php?delete=$id">Delete</a>
+<a href="post/doc-post.php?delete=$id">Delete</a>
 HTML;
                 }
-                $html .= "</p></div>";
+                $html .= "</p>";
+                $html .= $this->getDocComments($doc->getId(), $i);
+                $html .= "</div>";
             }
         }
         return $html;
+    }
+
+    private function getDocComments($DocID, $i) {
+        $html = "";
+        $html.='<p>';
+        $html .= $this->getCommentsForDoc($DocID);
+        $html .= '</p>';
+        $id = $this->projid;
+        if ($i === 0) {
+            $html .= '<form   name="comment" action="post/comment-post.php" method="post">';
+
+            $html .= '<div class="text">';
+            $html .= '<textarea rows="5" cols="50" name="comment" id="comment"></textarea>';
+            $html .= '</div>';
+            $html .= '<br>';
+            $html .= '<input class="addcomment" type="hidden" name="docID"  value=' . $DocID . '>';
+            $html .= '<input class="addcomment" type="hidden" name="projectID"  value=' . $id . '>';
+            $html .= '<br>';
+            $html .= '<input class ="addcomment" type="submit"  name ="add_comment" value="Write a Comment">';
+            $html .= '</form>';
+        }
+
+        return $html;
+    }
+
+    private function getCommentsForDoc($DocID){
+        $comments = new Comments($this->site);
+        $AllDocCom = $comments->getCommentsbyDOCid($DocID);
+        $html = "";
+
+        if(!empty($AllDocCom)) {
+            foreach($AllDocCom as $key => $value) {
+                $html .= '<div class="comments">';
+                $html .= '<p><strong>' . $value->getcommenterId() . '</strong>:&nbsp&nbsp &nbsp' . $value->getmessage() . '</p>';
+                $html .= '</div>';
+
+            }
+        }
+        return $html;
+
     }
 
     public function getProjid() {
