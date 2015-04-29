@@ -215,12 +215,12 @@ SQL;
     public function isProjMember($userid, $projid) {
         $sql = <<<SQL
 SELECT * from $this->tableName
-where ProjID=? and ((OwnerID=? and status='true') or (collaboratorID=? and status='true'))
+where ProjID=? and (collaboratorID=? and status='true')
 SQL;
 
         $pdo = $this->pdo();
         $statement = $pdo->prepare($sql);
-        $statement->execute(array($projid, $userid, $userid));
+        $statement->execute(array($projid, $userid));
 
         if ($statement->rowCount() > 0) {
             return true;

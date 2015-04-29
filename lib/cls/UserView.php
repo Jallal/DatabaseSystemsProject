@@ -442,13 +442,14 @@ HTML;
 		<h2>Projects</h2>
 HTML;
         $invitations = new Invitations($this->site);
+        $projects = new Projects($this->site);
         $viewingUserid = $this->viewingUser->getUserid();
         if (!empty($this->Allcolabproj)) {
 
             foreach ($this->Allcolabproj as $key2 => $value2) {
                 $projectId = $value2->getId();
                 $name = $value2->getName();
-                if ($invitations->isProjMember($viewingUserid, $projectId)) {
+                if ($invitations->isProjMember($viewingUserid, $projectId) || $projects->isProjOwner($viewingUserid, $projectId)) {
                     $html .= <<<HTML
 <p><a href="showProject.php?i=$projectId ">$name</a></p>
 HTML;
@@ -464,7 +465,7 @@ HTML;
             foreach ($this->UserProjs as $project) {
                 $projectId = $project->getId();
                 $name = $project->getName();
-                if ($invitations->isProjMember($viewingUserid, $projectId)) {
+                if ($invitations->isProjMember($viewingUserid, $projectId) || $projects->isProjOwner($viewingUserid, $projectId)) {
                     $html .= <<<HTML
 <p><a href="showProject.php?i=$projectId ">$name</a></p>
 HTML;
@@ -499,6 +500,7 @@ HTML;
 HTML;
             $users = new Users($this->site);
             $invitations = new Invitations($this->site);
+            $projects = new Projects($this->site);
             $viewingUserid = $this->viewingUser->getUserid();
             foreach($this->UserProjs as $key => $value){
                 $userid = $this->user->getUserid();
@@ -514,7 +516,7 @@ HTML;
                 $colabo =  $this->myinvitations->allProjectColaborators($id);
                 $html .= ' <div class="sighting">';
                 $html .= '<div>' . $delete . '</div>';
-                if (!$invitations->isProjMember($viewingUserid, $id)) {
+                if (!$invitations->isProjMember($viewingUserid, $id) && !$projects->isProjOwner($viewingUserid, $id)) {
                     $html .= '<h2>' . $title . '</h2>';
                 } else {
                     $html .= '<h2><a href="showProject.php?i=' . $id . '">' . $title . '</a></h2>';
@@ -609,6 +611,7 @@ HTML;
 
             $users = new Users($this->site);
             $invitations = new Invitations($this->site);
+            $projects = new Projects($this->site);
             $viewingUserid = $this->viewingUser->getUserid();
             foreach($this->Allcolabproj as $key => $value){
 
@@ -621,7 +624,7 @@ HTML;
                 $time = date('Y-m-d G:ia' ,$value->getCreated());
                 $colabo =  $this->myinvitations->allProjectColaborators($id);
                 $html .= ' <div class="sighting">';
-                if (!$invitations->isProjMember($viewingUserid, $id)) {
+                if (!$invitations->isProjMember($viewingUserid, $id) && !$projects->isProjOwner($viewingUserid, $id)) {
                     $html .= '<h2>' . $title . '</h2>';
                 } else {
                     $html .= '<h2><a href="showProject.php?i=' . $id . '">' . $title . '</a></h2>';
