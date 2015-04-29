@@ -106,6 +106,7 @@ class SightsController
 
     public function deleteProject($delete)
     {
+        $this->removeColab($delete);
         $this->projects->deleteproject($delete);
         $this->page = $this->site->getRoot();
         return $this->page;
@@ -130,9 +131,17 @@ class SightsController
 
 
     public function addToProject($ownerid,$inviteeid,$projid){
+
         $this->invitations->addUserToMyProj($ownerid,$inviteeid,(int)$projid,'pending');
         $this->page = $this->site->getRoot();
         return $this->page;
     }
+
+
+    public function removeColab($projid){
+
+        $this->invitations->RemoveAllProjectColaborators($projid);
+    }
+
 
 }

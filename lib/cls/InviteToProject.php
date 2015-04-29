@@ -79,6 +79,10 @@ class InviteToProject {
 
 
 
+        if(empty($this->searchresults)){
+
+            return "";
+        }
 
 
         if (sizeof( $this->searchresults) > 0 ) {

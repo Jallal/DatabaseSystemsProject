@@ -68,6 +68,13 @@ class SearchView {
         $currentusername = $this->user->getUserid();
 
 
+if(empty($this->searchresults)){
+
+    return "";
+}
+
+
+
 
         if (sizeof( $this->searchresults) > 0 ) {
 

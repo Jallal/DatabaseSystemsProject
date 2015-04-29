@@ -112,6 +112,26 @@ SQL;
         return $result;
     }
 
+
+
+
+
+
+    public function RemoveAllProjectColaborators($projID) {
+        $sql=<<<SQL
+DELETE  from $this->tableName
+WHERE ProjID=?
+SQL;
+
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        if($statement->execute(array($projID))){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
     public function myProjColaborations($userid) {
         $sql=<<<SQL
 SELECT *from $this->tableName
