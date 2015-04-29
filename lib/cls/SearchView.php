@@ -96,13 +96,13 @@ HTML;
                 }
 
                 $root = $this->site->getRoot();
-                if ($value->getPrivacy() == 'low') {
+                if ($value->getPrivacy() == 'low' || $value->getPrivacy() == 'medium') {
                     $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
                     $html .= '</div>';
-                } elseif ($value->getPrivacy() == 'medium' && $this->invitations->isCollaborator($currentusername, $userid)) {
+                } /*elseif ($value->getPrivacy() == 'medium' && $this->invitations->isCollaborator($currentusername, $userid)) {
                     $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
                     $html .= '</div>';
-                } else {
+                }*/ else {
                     if ($this->freindship->doesfreindshipExist($id, $currentuserID) && ($id !== $currentuserID)) {
                         $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
                         $html .= '</div>';
