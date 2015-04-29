@@ -43,14 +43,15 @@ FROM
         $this->tableName d
     INNER JOIN
         ( SELECT
-              Filename, MAX(versionNo) AS latest
+              ProjID, Filename, MAX(versionNo) AS latest
           FROM
               $this->tableName
           GROUP BY
               Filename
         ) AS groupedp
       ON  groupedp.Filename = d.Filename
-      AND groupedp.latest = d.versionNo;
+      AND groupedp.latest = d.versionNo
+      AND d.ProjID=?
 SQL;
 
         $pdo = $this->pdo();
