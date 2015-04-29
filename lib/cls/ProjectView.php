@@ -129,9 +129,9 @@ HTML;
         if($userid===$ownerid){
             $html = <<<HTML
            <form name="search" action="post/search-post.php" method="post">
-            <input class = "search" type="text"  name="invite"  value="Invite to project">
+            <input class = "search" type="text"  name="invite"  value=" ">
             <input class ="search"  type="hidden" name="projectID"  value=$projID>
-            <input class = "search" type="submit"  name ="search"   value="Search">
+            <input class = "search" type="submit"  name ="search"   value="Invite">
           </form>
 HTML;
             return  $html;
