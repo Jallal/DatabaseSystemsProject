@@ -118,5 +118,20 @@ SQL;
 
     }
 
+    public function isProjOwner($userid, $projid) {
+        $sql = <<<SQL
+SELECT * from $this->tableName
+where ProjID=? and OwnerID=?
+SQL;
 
+        $pdo = $this->pdo();
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($projid, $userid));
+
+        if ($statement->rowCount() > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }

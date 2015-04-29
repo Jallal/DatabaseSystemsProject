@@ -66,12 +66,13 @@ nav a:hover {
 
 a:link {
     text-decoration: none;
-    color: #004000;
+    color: #008000;
 }
 
 a:visited {
     text-decoration: none;
-    color: #008000;
+    color: #004000;
+
 }
 
 h1 {
