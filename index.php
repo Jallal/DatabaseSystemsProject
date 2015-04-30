@@ -17,7 +17,14 @@ if ($view->shouldRedirect()) {
 
 
 
-<?php echo Format::header($view->getName(),$view->getProjsCount(),$view->getDocsCount(),$view->FriendsCount()); ?>
+<?php
+if ($view->isSameUser()) {
+	$nameShown = $view->getName();
+} else {
+	$nameShown = $view->getUsername();
+}
+echo Format::header($nameShown,$view->getProjsCount(),$view->getDocsCount(),$view->FriendsCount());
+?>
 
 <body>
 
