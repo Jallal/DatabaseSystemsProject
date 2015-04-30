@@ -82,43 +82,46 @@ if(empty($this->searchresults)){
             $html = <<<HTML
 
 HTML;
+            $used = array();
             foreach ( $this->searchresults as $key => $value) {
                 $id = $value->getId();
                 $userid = $value->getUserid();
 
-
+                if (!in_array($userid, $used)) {
+                    $used[] = $userid;
                     $html .= ' <div class="sighting">';
-                    if (!($this->freindship->doesfreindshipExist($id, $currentuserID))&&($id!==$currentuserID)) {
+                    if (!($this->freindship->doesfreindshipExist($id, $currentuserID)) && ($id !== $currentuserID)) {
                         $AddFriend = $this->AddAFreind($value);
-                       // $html .= '<div>' . $AddFriend . '</div>';
+                        // $html .= '<div>' . $AddFriend . '</div>';
                     }
 
                     //$html .= '<h2><a href="sight.php?i=' . $id . '">' . $userid  . '</a></h2>';
 
-               //$html .= '<div class="sighting">';
-                if (!($this->freindship->doesfreindshipExist($id, $currentuserID)
-                        || $this->freindship->doesPendingExist($id, $currentuserID)) && ($id!==$currentuserID)) {
-                    $AddFriend = $this->AddAFreind($value);
-                    $html .= '<div>' . $AddFriend . '</div>';
-                }
+                    //$html .= '<div class="sighting">';
+                    if (!($this->freindship->doesfreindshipExist($id, $currentuserID)
+                            || $this->freindship->doesPendingExist($id, $currentuserID)) && ($id !== $currentuserID)
+                    ) {
+                        $AddFriend = $this->AddAFreind($value);
+                        $html .= '<div>' . $AddFriend . '</div>';
+                    }
 
-                $root = $this->site->getRoot();
-                if ($value->getPrivacy() == 'low' || $value->getPrivacy() == 'medium') {
-                    $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
-                    $html .= '</div>';
-                } /*elseif ($value->getPrivacy() == 'medium' && $this->invitations->isCollaborator($currentusername, $userid)) {
+                    $root = $this->site->getRoot();
+                    if ($value->getPrivacy() == 'low' || $value->getPrivacy() == 'medium') {
+                        $html .= '<h2><a href="' . $root . '/?i=' . $id . '">' . $userid . '</a></h2>';
+                        $html .= '</div>';
+                    } /*elseif ($value->getPrivacy() == 'medium' && $this->invitations->isCollaborator($currentusername, $userid)) {
                     $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
                     $html .= '</div>';
                 }*/ else {
-                    if ($this->freindship->doesfreindshipExist($id, $currentuserID) && ($id !== $currentuserID)) {
-                        $html .= '<h2><a href="'. $root . '/?i=' . $id . '">' . $userid  . '</a></h2>';
-                        $html .= '</div>';
-                    } else {
-                        $html .= '<h2>' . $userid . '</h2>';
-                        $html .= '</div>';
+                        if ($this->freindship->doesfreindshipExist($id, $currentuserID) && ($id !== $currentuserID)) {
+                            $html .= '<h2><a href="' . $root . '/?i=' . $id . '">' . $userid . '</a></h2>';
+                            $html .= '</div>';
+                        } else {
+                            $html .= '<h2>' . $userid . '</h2>';
+                            $html .= '</div>';
+                        }
                     }
                 }
-
             }
 
             return $html;
