@@ -240,7 +240,7 @@ HTML;
             $projectId = $project->getId();
             $name = $project->getName();
             $html .=  <<<HTML
-<p><a href="#=$projectId ">$name</a></p>
+<p><a href="showProject.php?i=$projectId">$name</a></p>
 HTML;
         }
         $html .= '</div>';

@@ -51,7 +51,7 @@ HTML;
                  $invitation = $this-> invitationsPossible($userid, $ownerid,$id);
                 $html .= ' <div class="sighting">';
                 $html .= '<div>' . $delete . '</div>';
-                $html .= '<h2><a href="#">' . $title. '</a></h2>';
+                $html .= '<h2>' . $title. '</h2>';
                 $html .= '<p class="time"> ' .  $created. ' </p>';
 
         $html .= <<< HTML
@@ -67,7 +67,6 @@ HTML;
         </div>
 HTML;
         if(!(empty($this->projDocs))) {
-
             foreach ($this->projDocs as $key => $value) {
                 $version = $value->getVersion();
                 $doctime = date('Y-m-d G:ia' ,$value->getCreateTime());
