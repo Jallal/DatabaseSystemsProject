@@ -38,7 +38,7 @@ SQL;
     public function AllProjectDocuments($Projid) {
         $sql = <<<SQL
 SELECT
-    d.*
+    d.ProjID, d.Filename, d.DocID, d.versionNo, d.creatorID, d.create_time
 FROM
         $this->tableName d
     INNER JOIN
@@ -46,17 +46,19 @@ FROM
               ProjID, Filename, MAX(versionNo) AS latest
           FROM
               $this->tableName
+          WHERE
+          ProjID=?
           GROUP BY
               Filename
         ) AS groupedp
-      ON  groupedp.Filename = d.Filename
-      AND groupedp.latest = d.versionNo
+      ON groupedp.latest = d.versionNo
+      AND groupedp.Filename = d.Filename
       AND d.ProjID=?
 SQL;
 
         $pdo = $this->pdo();
         $statement = $pdo->prepare($sql);
-        $statement->execute(array($Projid));
+        $statement->execute(array($Projid, $Projid));
         if ($statement->rowCount() === 0) {
             return false;
         }
